@@ -94,8 +94,8 @@ export const configProjection = (contextGL: ContextGL) => {
     TOP: contextGL.height,
     NEAR: 1000,
     FAR: -1000,
-  }
-}
+  };
+};
 
 export const CONFIG_RENDERER = {
   DEFAULT_PROJECTION: PROJECTION.ORTHOGRAPHIC,

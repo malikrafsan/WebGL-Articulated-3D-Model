@@ -1,4 +1,12 @@
-import { ElmtContainer, ArticulatedModel, FileManager, CONFIG_PATH, ContextGL, CUBES, Renderer } from ".";
+import {
+  ElmtContainer,
+  ArticulatedModel,
+  FileManager,
+  CONFIG_PATH,
+  ContextGL,
+  CUBES,
+  Renderer,
+} from ".";
 
 const main = async () => {
   const vertexShaderScript = await FileManager.readFile(
@@ -16,9 +24,8 @@ const main = async () => {
   const renderer = new Renderer(contextGL);
   renderer.setModel(articulatedModel);
   // renderer.render();
-  
-  requestAnimationFrame(renderer.render.bind(renderer));
 
+  requestAnimationFrame(renderer.render.bind(renderer));
 };
 
 main();

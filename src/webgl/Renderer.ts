@@ -71,7 +71,7 @@ export class Renderer {
       mMat: modelMat,
       camera: this._camera,
       isShadingOn: this._isShadingOn,
-    })
+    });
 
     requestAnimationFrame(this.render.bind(this));
   }

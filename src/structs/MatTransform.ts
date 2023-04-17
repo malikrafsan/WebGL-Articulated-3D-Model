@@ -1,9 +1,4 @@
-import {
-  Matrix4,
-  Transform,
-  AXIS_VALUES,
-  AXIS,
-} from "..";
+import { Matrix4, Transform, AXIS_VALUES, AXIS } from "..";
 
 export class MatTransform {
   private _mat: Matrix4;

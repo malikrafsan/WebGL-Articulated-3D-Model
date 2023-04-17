@@ -1,4 +1,4 @@
-import { COLORS, Vertex, Vector3, IArticulatedModel, TEXTURE } from '..';
+import { COLORS, Vertex, Vector3, IArticulatedModel, TEXTURE } from "..";
 
 export const CUBES: IArticulatedModel = {
   name: "Cubes",
