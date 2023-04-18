@@ -33,7 +33,7 @@ export class ElmtContainer {
   public readonly buttonTextureBump: HTMLButtonElement;
   public readonly buttonTextureEnvironment: HTMLButtonElement;
   public readonly buttonTextureReflective: HTMLButtonElement;
-  public readonly activeComponent: HTMLButtonElement;
+  public readonly activeComponent: HTMLElement;
   public readonly buttonSave: HTMLButtonElement;
   public readonly loadInput: HTMLInputElement;
   public readonly helpBtn: HTMLButtonElement;
