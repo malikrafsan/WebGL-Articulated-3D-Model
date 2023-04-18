@@ -1,8 +1,31 @@
 import { ElmtContainer } from "./ElmtContainer";
 import { ContextGL } from "../webgl";
 import { selectedTree } from "../main";
+import { Animator } from "../structs/Animator";
 
-export function addElmtListener(elmtContainer: ElmtContainer, contextGL: ContextGL) {
+export function addElmtListener(elmtContainer: ElmtContainer, contextGL: ContextGL, animator: Animator) {
+    // ANIMATION
+    elmtContainer.buttonAnimationPlay.onclick = () => {
+        animator.start();
+    };
+    elmtContainer.buttonAnimationPause.onclick = () => {
+        animator.pause();
+    };
+    elmtContainer.buttonAnimationStop.onclick = () => {
+        animator.stop();
+    };
+    elmtContainer.buttonAnimationPrev.onclick = () => {
+        animator.prev();
+    };
+    elmtContainer.buttonAnimationNext.onclick = () => {
+        animator.next();
+    };
+
+    animator.setOnChange((idxFrame) => {
+        elmtContainer.idxFrame.innerText = idxFrame.toString();
+    });
+
+
     // CHANGE OBJECT
     elmtContainer.selectModel.addEventListener("change", () => {
   

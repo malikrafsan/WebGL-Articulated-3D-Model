@@ -28,4 +28,19 @@ export interface IArticulatedModel {
   texture: TEXTURE_VALUES;
 }
 
+export interface IFrame {
+  // TODO: add more required properties
+  transform: ITransform;
+}
+
+export interface IAnimation {
+  name: string;
+  frames: IFrame[];
+}
+
+export interface IModelAndAnimation {
+  model: IArticulatedModel;
+  animation: IAnimation;
+}
+
 export const a = 0;

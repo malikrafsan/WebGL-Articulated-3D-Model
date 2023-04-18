@@ -10,6 +10,7 @@ import {
   LocationGL,
   Vector3,
   TextureGL,
+  ITransform,
 } from "..";
 
 export class ArticulatedModel {
@@ -24,13 +25,12 @@ export class ArticulatedModel {
     this._contextGL = contextGL;
     this._name = model.name;
     this._node = model.node;
-    this._transform = new Transform(model.transform);
+    // this._transform = new Transform(model.transform);
+    this.setTransform(model.transform);
     this._children = model.children.map(
       (child) => new ArticulatedModel(contextGL, child)
     );
     this._texture = model.texture;
-
-    this._transform.ToRad();
 
     const gl = this._contextGL.gl;
     const positionBuffer = gl.createBuffer();
@@ -60,6 +60,11 @@ export class ArticulatedModel {
 
     this._locationGL = new LocationGL(this._contextGL);
     this.adjustProps();
+  }
+
+  public setTransform(transform: ITransform) {
+    this._transform = new Transform(transform);
+    this._transform.ToRad();
   }
 
   public get name(): string {

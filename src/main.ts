@@ -12,6 +12,7 @@ import {
 } from ".";
 import { ITree, ITreeButton } from "./structs/tree";
 import { addElmtListener } from "./structs/elmtListener";
+import { Animator } from "./structs/Animator";
 
 const tree = (model: ArticulatedModel, level: number = 0) => {
   const t = {
@@ -69,7 +70,7 @@ const mapTreeToComponentTree = (elmtContainer: ElmtContainer, tree: ITree) => {
     callbackOnClick: () => {
       selectedTree = tree;
     },
-  })
+  });
   elmtContainer.addElmt("#component-tree", btn);
 
   const componentTree: ITreeButton = {
@@ -128,7 +129,7 @@ const main = async () => {
   const contextGL = new ContextGL(elmtContainer.canvas);
   contextGL.init({ vertexShaderScript, fragmentShaderScript });
 
-  const articulatedModel = new ArticulatedModel(contextGL, CUBES);
+  const articulatedModel = new ArticulatedModel(contextGL, CUBES.model);
   const renderer = new Renderer(contextGL);
   renderer.setModel(articulatedModel);
 
@@ -137,12 +138,14 @@ const main = async () => {
   printTree(t);
 
   const t2 = mapperTree(articulatedModel);
-  
-  selectedTree = t2;
-  addElmtListener(elmtContainer, contextGL);
-  mapTreeToComponentTree(elmtContainer, t2);
 
-  // renderer.render();
+  selectedTree = t2;
+
+  const animator = new Animator(CUBES.animation);
+  animator.setModel(articulatedModel);
+
+  addElmtListener(elmtContainer, contextGL, animator);
+  mapTreeToComponentTree(elmtContainer, t2);
 
   requestAnimationFrame(renderer.render.bind(renderer));
 };

@@ -28,12 +28,15 @@ export class ElmtContainer {
   public readonly buttonAnimationPlay: HTMLButtonElement;
   public readonly buttonAnimationPause: HTMLButtonElement;
   public readonly buttonAnimationStop: HTMLButtonElement;
+  public readonly buttonAnimationPrev: HTMLButtonElement;
+  public readonly buttonAnimationNext: HTMLButtonElement;
   public readonly buttonTextureBump: HTMLButtonElement;
   public readonly buttonTextureEnvironment: HTMLButtonElement;
   public readonly buttonTextureReflective: HTMLButtonElement;
   public readonly buttonSave: HTMLButtonElement;
   public readonly loadInput: HTMLInputElement;
   public readonly helpBtn: HTMLButtonElement;
+  public readonly idxFrame: HTMLDivElement;
   // public readonly modalContainer: HTMLDivElement;
   // public readonly modalBackdrop: HTMLDivElement;
   // public readonly modalBody: HTMLDivElement;
@@ -89,6 +92,13 @@ export class ElmtContainer {
     const buttonAnimationPlay = document.getElementById("button-animation-play");
     const buttonAnimationPause = document.getElementById("button-animation-pause");
     const buttonAnimationStop = document.getElementById("button-animation-stop");
+    const buttonAnimationPrev = document.getElementById(
+      "button-animation-prev"
+    );
+    const buttonAnimationNext = document.getElementById(
+      "button-animation-next"
+    );
+    const idxFrame = document.getElementById("idx-frame");
 
     const buttonTextureBump = document.getElementById("button-texture-bump");
     const buttonTextureEnvironment = document.getElementById("button-texture-environment");
@@ -204,6 +214,16 @@ export class ElmtContainer {
     if (!(helpBtn instanceof HTMLButtonElement)) {
       throw new Error("Help not found");
     }
+    if (!(buttonAnimationPrev instanceof HTMLButtonElement)) {
+      throw new Error("Button animation prev not found");
+    }
+    if (!(buttonAnimationNext instanceof HTMLButtonElement)) {
+      throw new Error("Button animation next not found");
+    }
+    if (!(idxFrame instanceof HTMLDivElement)) {
+      throw new Error("Idx frame not found");
+    }
+
     // if (!(modalContainer instanceof HTMLDivElement)) {
     //   throw new Error("Modal container not found");
     // }
@@ -242,6 +262,9 @@ export class ElmtContainer {
     this.buttonAnimationPlay = buttonAnimationPlay;
     this.buttonAnimationPause = buttonAnimationPause;
     this.buttonAnimationStop = buttonAnimationStop;
+    this.buttonAnimationPrev = buttonAnimationPrev;
+    this.buttonAnimationNext = buttonAnimationNext;
+    this.idxFrame = idxFrame;
     this.buttonTextureBump = buttonTextureBump;
     this.buttonTextureEnvironment = buttonTextureEnvironment;
     this.buttonTextureReflective = buttonTextureReflective;
