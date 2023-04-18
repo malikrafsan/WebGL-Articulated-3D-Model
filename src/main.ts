@@ -70,6 +70,7 @@ const mapTreeToComponentTree = (elmtContainer: ElmtContainer, tree: ITree) => {
     callbackOnClick: () => {
       selectedTree = tree;
       refreshModel(elmtContainer);
+      elmtContainer.activeComponent.innerHTML = tree.name;
     },
   });
   elmtContainer.addElmt("#component-tree", btn);
@@ -146,6 +147,7 @@ const main = async () => {
   animator.setModel(articulatedModel);
 
   addElmtListener(elmtContainer, contextGL, animator);
+  elmtContainer.activeComponent.innerHTML = t2.name;
   mapTreeToComponentTree(elmtContainer, t2);
 
   requestAnimationFrame(renderer.render.bind(renderer));
