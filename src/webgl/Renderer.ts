@@ -14,7 +14,7 @@ export class Renderer {
   private _contextGL: ContextGL;
   private _projection: PROJECTION_VALUES;
   private _projectionMatrix: Matrix4 = Matrix4.identity();
-  private _isShadingOn: boolean = false;
+  private _isShadingOn: boolean = true;
   private _camera: Camera;
   private _articulatedModel: ArticulatedModel | null = null;
 
@@ -28,22 +28,60 @@ export class Renderer {
     this._articulatedModel = articulatedModel;
   }
 
+  public setShading(shading: boolean) {
+    this._isShadingOn = shading;
+  }
+
   public setProjection(projection: PROJECTION_VALUES) {
     this._projection = projection;
 
     const config = configProjection(this._contextGL);
+    const orthoConf = config.ORTHO;
+    const persConf = config.PERSPECTIVE;
+    const obConf = config.OBLIQUE;
+
     switch (projection) {
       case PROJECTION.ORTHOGRAPHIC:
         this._projectionMatrix = Matrix4.orthographic({
-          left: config.LEFT,
-          right: config.RIGHT,
-          bottom: config.BOTTOM,
-          top: config.TOP,
-          near: config.NEAR,
-          far: config.FAR,
+          left: orthoConf.LEFT,
+          right: orthoConf.RIGHT,
+          bottom: orthoConf.BOTTOM,
+          top: orthoConf.TOP,
+          near: orthoConf.NEAR,
+          far: orthoConf.FAR,
         });
         break;
       // TODO: Implement other projections
+      case PROJECTION.PERSPECTIVE:
+        this._projectionMatrix = Matrix4.perspective({
+          fov: persConf.FOV,
+          near: persConf.NEAR,
+          far: persConf.FAR,
+          aspectRatio: persConf.ASPECT_RATIO,
+        });
+        break;
+      case PROJECTION.OBLIQUE:
+        const orthoMat = Matrix4.orthographic({
+          left: orthoConf.LEFT,
+          right: orthoConf.RIGHT,
+          bottom: orthoConf.BOTTOM,
+          top: orthoConf.TOP,
+          near: orthoConf.NEAR,
+          far: orthoConf.FAR,
+        });
+        const obliqueMat = Matrix4.oblique({
+          theta: obConf.THETA,
+          phi: obConf.PHI,
+        });
+
+        const mul = Matrix4.multiply(orthoMat, obliqueMat);
+        this._projectionMatrix = mul;
+
+        // const matProject = new MatTransform(mul);
+        // matProject.translate(0, 0, 0)//obConf.Z_TRANSLATION);
+
+        // this._projectionMatrix = matProject.mat;
+        break;
       default:
         throw new Error("Projection not implemented");
     }
@@ -61,9 +99,10 @@ export class Renderer {
     const lookAtMat = this._camera.lookAt;
     const viewMat = lookAtMat.clone().inverse();
     const modelMat = new MatTransform()
-      .rotateY(90)
-      .scale(0.9, 0.9, 0.9)
-      .rotateX(45).mat;
+      .rotateY(Math.PI / 5)
+      .scale(0.5, 0.5, 0.5)
+      .rotateX(Math.PI / 4)
+      .rotateZ(Math.PI).mat;
 
     this._articulatedModel.draw({
       pMat: projectionMat,

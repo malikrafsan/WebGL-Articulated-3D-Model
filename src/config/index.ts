@@ -1,4 +1,4 @@
-import { Color, ContextGL } from "..";
+import { Color, ContextGL, ExtendedMath } from "..";
 
 export const CONFIG_PATH = {
   VERTEX_SHADER: "shaders/vertex.glsl",
@@ -88,15 +88,28 @@ export const COLORS = {
 
 export const configProjection = (contextGL: ContextGL) => {
   return {
-    LEFT: 0,
-    RIGHT: contextGL.width,
-    BOTTOM: 0,
-    TOP: contextGL.height,
-    NEAR: 1000,
-    FAR: -1000,
+    ORTHO: {
+      LEFT: 0,
+      RIGHT: contextGL.width,
+      BOTTOM: 0,
+      TOP: contextGL.height,
+      NEAR: 1000,
+      FAR: -1000,
+    },
+    PERSPECTIVE: {
+      FOV: ExtendedMath.degreeToRad(60),
+      NEAR: 0.1,
+      FAR: 2000,
+      ASPECT_RATIO: contextGL.width / contextGL.height,
+    },
+    OBLIQUE: {
+      THETA: ExtendedMath.degreeToRad(45),
+      PHI: ExtendedMath.degreeToRad(45),
+      Z_TRANSLATION: 500,
+    },
   };
 };
 
 export const CONFIG_RENDERER = {
-  DEFAULT_PROJECTION: PROJECTION.ORTHOGRAPHIC,
+  DEFAULT_PROJECTION: PROJECTION.OBLIQUE,
 } as const;

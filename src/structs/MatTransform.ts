@@ -53,6 +53,29 @@ export class MatTransform {
 
     return new MatTransform(mat);
   }
+
+  public static perpective(props: {
+    fov: number;
+    near: number;
+    far: number;
+    aspectRatio: number;
+  }) {
+    const { fov, near, far, aspectRatio } = props;
+
+    const f = Math.tan(Math.PI * 0.5 - 0.5 * fov);
+    const depth = far - near;
+    const invDepth = 1 / depth;
+
+    const mat = new Matrix4([
+      [f / aspectRatio, 0, 0, 0],
+      [0, f, 0, 0],
+      [0, 0, (far + near) * invDepth, -1],
+      [0, 0, 2 * near * far * invDepth, 0],
+    ]);
+
+    return new MatTransform(mat);
+  }
+
   public translate(x: number, y: number, z: number): MatTransform {
     // TODO: CHECK VALIDITY
     const mat = Matrix4.identity();

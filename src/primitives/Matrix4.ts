@@ -221,14 +221,14 @@ export class Matrix4 {
     return new Matrix4(mat4x4);
   }
 
-  public static orthographic = (props: {
+  public static orthographic(props: {
     left: number;
     right: number;
     bottom: number;
     top: number;
     near: number;
     far: number;
-  }): Matrix4 => {
+  }) {
     const { left, right, bottom, top, near, far } = props;
 
     const width = right - left;
@@ -241,7 +241,46 @@ export class Matrix4 {
       [0, 0, 2 / depth, 0],
       [0, 0, 0, 1],
     ]);
-  };
+  }
+
+  public static perspective(props: {
+    fov: number;
+    near: number;
+    far: number;
+    aspectRatio: number;
+  }) {
+    const { fov, near, far, aspectRatio } = props;
+
+    const f = Math.tan(Math.PI * 0.5 - 0.5 * fov);
+    const depth = far - near;
+    const invDepth = 1 / depth;
+
+    const mat = new Matrix4([
+      [f / aspectRatio, 0, 0, 0],
+      [0, f, 0, 0],
+      [0, 0, (far + near) * invDepth, -1],
+      [0, 0, 2 * near * far * invDepth, 0],
+    ]);
+
+    return mat;
+  }
+
+  public static oblique(props: { theta: number; phi: number }) {
+    const { theta, phi } = props;
+
+    const cotTheta = 1 / Math.tan(theta);
+    const cotPhi = 1 / Math.tan(phi);
+
+    const mat = new Matrix4([
+      [1, 0, -cotTheta, 0],
+      [0, 1, -cotPhi, 0],
+      [0, 0, 1, 0],
+      [0, 0, 0, 1],
+    ]);
+    mat.transpose();
+
+    return mat;
+  }
 
   public transpose() {
     for (let i = 0; i < 4; i++) {
