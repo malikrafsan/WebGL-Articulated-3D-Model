@@ -31,6 +31,7 @@ export class ElmtContainer {
   public readonly buttonTextureBump: HTMLButtonElement;
   public readonly buttonTextureEnvironment: HTMLButtonElement;
   public readonly buttonTextureReflective: HTMLButtonElement;
+  public readonly activeComponent: HTMLButtonElement;
   public readonly buttonSave: HTMLButtonElement;
   public readonly loadInput: HTMLInputElement;
   public readonly helpBtn: HTMLButtonElement;
@@ -93,6 +94,8 @@ export class ElmtContainer {
     const buttonTextureBump = document.getElementById("button-texture-bump");
     const buttonTextureEnvironment = document.getElementById("button-texture-environment");
     const buttonTextureReflective = document.getElementById("button-texture-reflective");
+
+    const activeComponent = document.getElementById("active-component");
 
     const buttonSave = document.getElementById("save");
     const loadInput = document.getElementById("load");
@@ -195,6 +198,9 @@ export class ElmtContainer {
     if (!(buttonTextureReflective instanceof HTMLButtonElement)) {
       throw new Error("save not found");
     }
+    if (!(activeComponent instanceof HTMLElement)) {
+      throw new Error("save not found");
+    }
     if (!(buttonSave instanceof HTMLButtonElement)) {
       throw new Error("save not found");
     }
@@ -245,6 +251,7 @@ export class ElmtContainer {
     this.buttonTextureBump = buttonTextureBump;
     this.buttonTextureEnvironment = buttonTextureEnvironment;
     this.buttonTextureReflective = buttonTextureReflective;
+    this.activeComponent = activeComponent;
     this.buttonSave = buttonSave;
     this.loadInput = loadInput;
     this.helpBtn = helpBtn;
