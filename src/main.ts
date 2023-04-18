@@ -11,8 +11,8 @@ import {
   MatTransform,
 } from ".";
 import { ITree, ITreeButton } from "./structs/tree";
-import { addElmtListener } from "./structs/elmtListener";
 import { Animator } from "./structs/Animator";
+import { addElmtListener, refreshModel } from "./structs/elmtListener";
 
 const tree = (model: ArticulatedModel, level: number = 0) => {
   const t = {
@@ -69,6 +69,7 @@ const mapTreeToComponentTree = (elmtContainer: ElmtContainer, tree: ITree) => {
     depth: tree.level,
     callbackOnClick: () => {
       selectedTree = tree;
+      refreshModel(elmtContainer);
     },
   });
   elmtContainer.addElmt("#component-tree", btn);
@@ -150,5 +151,8 @@ const main = async () => {
   requestAnimationFrame(renderer.render.bind(renderer));
 };
 
+// global variable
 export var selectedTree: ITree;
+
+// main function
 main();
