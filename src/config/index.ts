@@ -111,5 +111,5 @@ export const configProjection = (contextGL: ContextGL) => {
 };
 
 export const CONFIG_RENDERER = {
-  DEFAULT_PROJECTION: PROJECTION.OBLIQUE,
+  DEFAULT_PROJECTION: PROJECTION.ORTHOGRAPHIC,
 } as const;
