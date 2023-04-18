@@ -5,7 +5,10 @@ import {
   CONFIG_PATH,
   ContextGL,
   CUBES,
+  Transform,
   Renderer,
+  Matrix4,
+  MatTransform,
 } from ".";
 
 const tree = (model: ArticulatedModel, level: number = 0) => {
@@ -77,7 +80,27 @@ const printTree = (tree: any) => {
   tree.children.forEach((child: any) => printTree(child));
 };
 
+const test = () => {
+  const transform = new Transform({
+    translation: [10, 9, 1],
+    rotation: [0, 0, 0],
+    scale: [1, 1, 1],
+  });
+
+  const mat = new Matrix4([
+    [1, 3, 4, 5],
+    [-1, 2, 5, 2],
+    [5, 3, 1, 3],
+    [1, 4, 5, 1],
+  ]);
+  const newMat = new MatTransform(mat).transform(transform).mat;
+
+  console.log(newMat);
+};
+
 const main = async () => {
+  test();
+
   const vertexShaderScript = await FileManager.readFile(
     CONFIG_PATH.VERTEX_SHADER
   );

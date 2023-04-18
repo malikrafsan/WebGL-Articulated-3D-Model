@@ -101,14 +101,10 @@ export class ArticulatedModel {
     this.bindBuffers();
     this.setBuffers();
 
-    const cloneModelMat = mMat.clone();
-    const matTransform = new MatTransform(cloneModelMat);
-    matTransform.transform(this.transform);
-
     this.setUniforms({
       projectionMat: pMat,
       viewMat: vMat,
-      modelMat: mMat,
+      modelMat: newModelMat.mat,
       camera: camera,
       isShadingOn: isShadingOn,
     });

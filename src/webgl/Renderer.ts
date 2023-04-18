@@ -14,7 +14,7 @@ export class Renderer {
   private _contextGL: ContextGL;
   private _projection: PROJECTION_VALUES;
   private _projectionMatrix: Matrix4 = Matrix4.identity();
-  private _isShadingOn: boolean = true;
+  private _isShadingOn: boolean = false;
   private _camera: Camera;
   private _articulatedModel: ArticulatedModel | null = null;
 
@@ -99,10 +99,11 @@ export class Renderer {
     const lookAtMat = this._camera.lookAt;
     const viewMat = lookAtMat.clone().inverse();
     const modelMat = new MatTransform()
-      .rotateY(Math.PI / 5)
-      .scale(0.5, 0.5, 0.5)
-      .rotateX(Math.PI / 4)
-      .rotateZ(Math.PI).mat;
+      // .rotateY(Math.PI / 5)
+      // .scale(0.5, 0.5, 0.5)
+      // .rotateX(Math.PI / 4)
+      // .rotateZ(Math.PI)
+      .mat;
 
     this._articulatedModel.draw({
       pMat: projectionMat,

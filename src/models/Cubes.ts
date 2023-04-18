@@ -24,8 +24,8 @@ export const CUBES: IArticulatedModel = {
   },
   transform: {
     translation: [0, 0, 0],
-    rotation: [0, 0, 90],
-    scale: [2, 2, 2], // TODO: USE CONFIG
+    rotation: [45, 135, 45],
+    scale: [1, 1, 1], // TODO: USE CONFIG
   },
   children: [
     {
@@ -53,7 +53,7 @@ export const CUBES: IArticulatedModel = {
       transform: {
         translation: [0, 0, 0],
         rotation: [0, 0, 0],
-        scale: [1, 1, 1],
+        scale: [1, 2, 1],
       },
       children: [
         {
@@ -93,7 +93,7 @@ export const CUBES: IArticulatedModel = {
           transform: {
             translation: [0, 0, 0],
             rotation: [0, 0, 0],
-            scale: [1, 1, 1],
+            scale: [2, 1, 2],
           },
           children: [],
           texture: TEXTURE.NONE,
@@ -125,8 +125,8 @@ export const CUBES: IArticulatedModel = {
       },
       transform: {
         translation: [0, 0, 0],
-        rotation: [0, 0, 0],
-        scale: [1, 1, 1],
+        rotation: [45, 0, 0],
+        scale: [2, 2, 2],
       },
       children: [],
       texture: TEXTURE.BUMP,
