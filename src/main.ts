@@ -146,7 +146,7 @@ const main = async () => {
   const animator = new Animator(CUBES.animation);
   animator.setModel(articulatedModel);
 
-  addElmtListener(elmtContainer, contextGL, animator);
+  addElmtListener(elmtContainer, contextGL, animator, articulatedModel);
   elmtContainer.activeComponent.innerHTML = t2.name;
   mapTreeToComponentTree(elmtContainer, t2);
 

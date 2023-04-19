@@ -62,6 +62,16 @@ export class ArticulatedModel {
     this.adjustProps();
   }
 
+  public toInterface(): IArticulatedModel {
+    return {
+      name: this._name,
+      node: this._node,
+      transform: this._transform.toInterface(),
+      children: this._children.map((child) => child.toInterface()),
+      texture: this._texture,
+    };
+  }
+
   public setTransform(transform: ITransform) {
     this._transform = new Transform(transform);
     this._transform.ToRad();

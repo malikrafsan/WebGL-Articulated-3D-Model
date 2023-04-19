@@ -15,9 +15,25 @@ export interface ITransform {
   scale: number[];
 }
 
+export interface IRawNodeModel {
+  vertices: {
+    position: number[];
+    color: number[];
+  }[];
+  faces: number[][];
+}
+
 export interface INodeModel {
   vertices: Vertex[];
   faces: number[][];
+}
+
+export interface IRawArticulatedModel {
+  name: string;
+  node: IRawNodeModel;
+  transform: ITransform;
+  children: IRawArticulatedModel[];
+  texture: TEXTURE_VALUES;
 }
 
 export interface IArticulatedModel {

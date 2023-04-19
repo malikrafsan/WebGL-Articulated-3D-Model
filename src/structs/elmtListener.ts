@@ -2,8 +2,10 @@ import { ElmtContainer } from "./ElmtContainer";
 import { ContextGL } from "../webgl";
 import { selectedTree } from "../main";
 import { Animator } from "../structs/Animator";
+import { SaveLoader } from "../utils/SaveLoader";
+import { ArticulatedModel } from ".";
 
-export function addElmtListener(elmtContainer: ElmtContainer, contextGL: ContextGL, animator: Animator) {
+export function addElmtListener(elmtContainer: ElmtContainer, contextGL: ContextGL, animator: Animator, model: ArticulatedModel) {
     // ANIMATION
     elmtContainer.buttonAnimationPlay.onclick = () => {
         animator.start();
@@ -124,10 +126,17 @@ export function addElmtListener(elmtContainer: ElmtContainer, contextGL: Context
   
     // SAVE & LOAD
     elmtContainer.buttonSave.addEventListener("click", () => {
-  
+        SaveLoader.saveModel(model, "file.json");
     });
     elmtContainer.loadInput.addEventListener("change", () => {
-      
+        const file = elmtContainer.loadInput.files?.[0];
+        if (!file) {
+            return;
+        }
+
+        SaveLoader.loadModel(file, (model) => {
+            console.log(model);
+        });
     });
   
     // MODAL

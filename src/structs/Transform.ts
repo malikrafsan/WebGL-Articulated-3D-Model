@@ -38,4 +38,12 @@ export class Transform {
       scale: this._scale,
     });
   }
+
+  public toInterface(): ITransform {
+    return {
+      translation: this._translation,
+      rotation: this._rotation,
+      scale: this._scale,
+    };
+  }
 }

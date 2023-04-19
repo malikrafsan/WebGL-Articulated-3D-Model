@@ -191,25 +191,25 @@ export class ElmtContainer {
       throw new Error("Button proj oblique not found");
     }
     if (!(buttonAnimationPlay instanceof HTMLButtonElement)) {
-      throw new Error("save not found");
+      throw new Error("buttonAnimationPlay not found");
     }
     if (!(buttonAnimationPause instanceof HTMLButtonElement)) {
-      throw new Error("save not found");
+      throw new Error("buttonAnimationPause not found");
     }
     if (!(buttonAnimationStop instanceof HTMLButtonElement)) {
-      throw new Error("save not found");
+      throw new Error("buttonAnimationStop not found");
     }
     if (!(buttonTextureBump instanceof HTMLButtonElement)) {
-      throw new Error("save not found");
+      throw new Error("buttonTextureBump not found");
     }
     if (!(buttonTextureEnvironment instanceof HTMLButtonElement)) {
-      throw new Error("save not found");
+      throw new Error("buttonTextureEnvironment not found");
     }
     if (!(buttonTextureReflective instanceof HTMLButtonElement)) {
-      throw new Error("save not found");
+      throw new Error("buttonTextureReflective not found");
     }
     if (!(activeComponent instanceof HTMLElement)) {
-      throw new Error("save not found");
+      throw new Error("activeComponent not found");
     }
     if (!(buttonSave instanceof HTMLButtonElement)) {
       throw new Error("save not found");
