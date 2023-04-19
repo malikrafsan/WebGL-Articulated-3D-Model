@@ -1,7 +1,8 @@
 import { ElmtContainer } from "./ElmtContainer";
 import { ContextGL } from "../webgl";
-import { selectedTree } from "../main";
+import { renderer, selectedTree } from "../main";
 import { Animator } from "../structs/Animator";
+import { PROJECTION } from "../config";
 import { SaveLoader } from "../utils/SaveLoader";
 import { ArticulatedModel } from ".";
 
@@ -36,22 +37,22 @@ export function addElmtListener(elmtContainer: ElmtContainer, contextGL: Context
   
     // TRANSLATION
     elmtContainer.buttonTranslateLeft.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[0] -= 0.1;
+        selectedTree.ref.transform.translation[0] -= 5;
     });
     elmtContainer.buttonTranslateRight.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[0] += 0.1;
+        selectedTree.ref.transform.translation[0] += 5;
     });
     elmtContainer.buttonTranslateUp.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[1] += 0.1;
+        selectedTree.ref.transform.translation[1] += 5;
     });
     elmtContainer.buttonTranslateDown.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[1] -= 0.1;
+        selectedTree.ref.transform.translation[1] -= 5;
     });
     elmtContainer.buttonTranslateIn.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[2] -= 0.1;
+        selectedTree.ref.transform.translation[2] -= 5;
     });
     elmtContainer.buttonTranslateOut.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[2] += 0.1;
+        selectedTree.ref.transform.translation[2] += 5;
     });
   
     // SCALING
@@ -105,13 +106,13 @@ export function addElmtListener(elmtContainer: ElmtContainer, contextGL: Context
   
     // PROJECTION
     elmtContainer.buttonProjOrthographic.addEventListener("click", () => {
-        
+        renderer.setProjection(PROJECTION.ORTHOGRAPHIC);
     });
     elmtContainer.buttonProjPerspective.addEventListener("click", () => {
-        
+        renderer.setProjection(PROJECTION.PERSPECTIVE);
     });
     elmtContainer.buttonProjOblique.addEventListener("click", () => {
-        
+        renderer.setProjection(PROJECTION.OBLIQUE);
     });
   
     // SHADE

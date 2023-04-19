@@ -79,10 +79,10 @@ export class MatTransform {
   public translate(x: number, y: number, z: number): MatTransform {
     // TODO: CHECK VALIDITY
     const mat = Matrix4.identity();
-    mat.setElmt(0, 3, x);
-    mat.setElmt(1, 3, y);
-    mat.setElmt(2, 3, z);
-    this._mat = Matrix4.multiply(this._mat, mat);
+    mat.setElmt(3, 0, x);
+    mat.setElmt(3, 1, y);
+    mat.setElmt(3, 2, z);
+    this._mat = Matrix4.multiply(mat, this._mat);
     return this;
   }
 
@@ -91,37 +91,37 @@ export class MatTransform {
     mat.setElmt(0, 0, x);
     mat.setElmt(1, 1, y);
     mat.setElmt(2, 2, z);
-    this._mat = Matrix4.multiply(this._mat, mat);
+    this._mat = Matrix4.multiply(mat, this._mat);
     return this;
   }
 
   public rotateX(angle: number): MatTransform {
     const mat = Matrix4.identity();
     mat.setElmt(1, 1, Math.cos(angle));
-    mat.setElmt(1, 2, -Math.sin(angle));
-    mat.setElmt(2, 1, Math.sin(angle));
+    mat.setElmt(1, 2, Math.sin(angle));
+    mat.setElmt(2, 1, -Math.sin(angle));
     mat.setElmt(2, 2, Math.cos(angle));
-    this._mat = Matrix4.multiply(this._mat, mat);
+    this._mat = Matrix4.multiply(mat, this._mat);
     return this;
   }
 
   public rotateY(angle: number): MatTransform {
     const mat = Matrix4.identity();
     mat.setElmt(0, 0, Math.cos(angle));
-    mat.setElmt(0, 2, Math.sin(angle));
-    mat.setElmt(2, 0, -Math.sin(angle));
+    mat.setElmt(0, 2, -Math.sin(angle));
+    mat.setElmt(2, 0, Math.sin(angle));
     mat.setElmt(2, 2, Math.cos(angle));
-    this._mat = Matrix4.multiply(this._mat, mat);
+    this._mat = Matrix4.multiply(mat, this._mat);
     return this;
   }
 
   public rotateZ(angle: number): MatTransform {
     const mat = Matrix4.identity();
     mat.setElmt(0, 0, Math.cos(angle));
-    mat.setElmt(0, 1, -Math.sin(angle));
-    mat.setElmt(1, 0, Math.sin(angle));
+    mat.setElmt(0, 1, Math.sin(angle));
+    mat.setElmt(1, 0, -Math.sin(angle));
     mat.setElmt(1, 1, Math.cos(angle));
-    this._mat = Matrix4.multiply(this._mat, mat);
+    this._mat = Matrix4.multiply(mat, this._mat);
     return this;
   }
 

@@ -112,8 +112,9 @@ const test = () => {
     [5, 3, 1, 3],
     [1, 4, 5, 1],
   ]);
-  const newMat = new MatTransform(mat).transform(transform).mat;
+  const newMat = new MatTransform(mat).scale(1.1,1.1,1.1);
 
+  console.log("result");
   console.log(newMat);
 };
 
@@ -132,7 +133,7 @@ const main = async () => {
   contextGL.init({ vertexShaderScript, fragmentShaderScript });
 
   const articulatedModel = new ArticulatedModel(contextGL, CUBES.model);
-  const renderer = new Renderer(contextGL);
+  renderer = new Renderer(contextGL);
   renderer.setModel(articulatedModel);
 
   const t = tree(articulatedModel);
@@ -155,6 +156,8 @@ const main = async () => {
 
 // global variable
 export var selectedTree: ITree;
+export var renderer: Renderer;
 
 // main function
 main();
+// test();

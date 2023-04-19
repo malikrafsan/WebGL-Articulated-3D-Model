@@ -77,10 +77,10 @@ export class Renderer {
         const mul = Matrix4.multiply(orthoMat, obliqueMat);
         this._projectionMatrix = mul;
 
-        // const matProject = new MatTransform(mul);
-        // matProject.translate(0, 0, 0)//obConf.Z_TRANSLATION);
+        const matProject = new MatTransform(mul);
+        matProject.translate(0, 0, obConf.Z_TRANSLATION);
 
-        // this._projectionMatrix = matProject.mat;
+        this._projectionMatrix = matProject.mat;
         break;
       default:
         throw new Error("Projection not implemented");
