@@ -4,7 +4,7 @@ export class Camera {
   private _target = new Vector3(0, 0, 0);
   private _up = new Vector3(0, 1, 0);
   private _angle = 0;
-  private _radius: number = 200;
+  private _radius: number = 500;
   private _lookAt: Matrix4;
 
   constructor() {
@@ -45,9 +45,9 @@ export class Camera {
     camMat.translate(0, 0, this._radius);
 
     const pos = new Vector3(
-      camMat.mat.elmt(0, 3),
-      camMat.mat.elmt(1, 3),
-      camMat.mat.elmt(2, 3)
+      camMat.mat.elmt(3, 0),
+      camMat.mat.elmt(3, 1),
+      camMat.mat.elmt(3, 2)
     );
 
     return pos;

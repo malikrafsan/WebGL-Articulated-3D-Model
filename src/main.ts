@@ -112,8 +112,9 @@ const test = () => {
     [5, 3, 1, 3],
     [1, 4, 5, 1],
   ]);
-  const newMat = new MatTransform(mat).transform(transform).mat;
+  const newMat = new MatTransform(mat).scale(1.1,1.1,1.1);
 
+  console.log("result");
   console.log(newMat);
 };
 
@@ -158,3 +159,4 @@ export var selectedTree: ITree;
 
 // main function
 main();
+// test();
