@@ -252,7 +252,7 @@ export class Matrix4 {
     const { fov, near, far, aspectRatio } = props;
 
     const f = Math.tan(Math.PI * 0.5 - 0.5 * fov);
-    const depth = far - near;
+    const depth = near - far;
     const invDepth = 1 / depth;
 
     const mat = new Matrix4([
@@ -268,12 +268,12 @@ export class Matrix4 {
   public static oblique(props: { theta: number; phi: number }) {
     const { theta, phi } = props;
 
-    const cotTheta = 1 / Math.tan(theta);
+    const cotTheta = - 1 / Math.tan(theta);
     const cotPhi = 1 / Math.tan(phi);
 
     const mat = new Matrix4([
-      [1, 0, -cotTheta, 0],
-      [0, 1, -cotPhi, 0],
+      [1, 0, cotTheta, 0],
+      [0, 1, cotPhi, 0],
       [0, 0, 1, 0],
       [0, 0, 0, 1],
     ]);

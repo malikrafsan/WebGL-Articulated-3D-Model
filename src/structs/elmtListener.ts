@@ -1,7 +1,8 @@
 import { ElmtContainer } from "./ElmtContainer";
 import { ContextGL } from "../webgl";
-import { selectedTree } from "../main";
+import { renderer, selectedTree } from "../main";
 import { Animator } from "../structs/Animator";
+import { PROJECTION } from "../config";
 
 export function addElmtListener(elmtContainer: ElmtContainer, contextGL: ContextGL, animator: Animator) {
     // ANIMATION
@@ -103,13 +104,13 @@ export function addElmtListener(elmtContainer: ElmtContainer, contextGL: Context
   
     // PROJECTION
     elmtContainer.buttonProjOrthographic.addEventListener("click", () => {
-        
+        renderer.setProjection(PROJECTION.ORTHOGRAPHIC);
     });
     elmtContainer.buttonProjPerspective.addEventListener("click", () => {
-        
+        renderer.setProjection(PROJECTION.PERSPECTIVE);
     });
     elmtContainer.buttonProjOblique.addEventListener("click", () => {
-        
+        renderer.setProjection(PROJECTION.OBLIQUE);
     });
   
     // SHADE

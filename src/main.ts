@@ -133,7 +133,7 @@ const main = async () => {
   contextGL.init({ vertexShaderScript, fragmentShaderScript });
 
   const articulatedModel = new ArticulatedModel(contextGL, CUBES.model);
-  const renderer = new Renderer(contextGL);
+  renderer = new Renderer(contextGL);
   renderer.setModel(articulatedModel);
 
   const t = tree(articulatedModel);
@@ -156,6 +156,7 @@ const main = async () => {
 
 // global variable
 export var selectedTree: ITree;
+export var renderer: Renderer;
 
 // main function
 main();
