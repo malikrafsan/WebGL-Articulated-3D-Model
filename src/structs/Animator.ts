@@ -48,7 +48,7 @@ export class Animator {
     this._callback = callback;
   }
 
-  private apply() {
+  public apply() {
     if (!this._model) {
       return;
     }
