@@ -1,4 +1,5 @@
 import { FileManager, CONFIG_GL } from "..";
+import { GlobalVars } from "../structs/GlobalVars";
 
 export class ContextGL {
   private readonly _canvas: HTMLCanvasElement;
@@ -36,7 +37,7 @@ export class ContextGL {
     return this._program;
   }
 
-  public adjustSize() {
+  public adjustSize(globalVars: GlobalVars) {
     const { clientWidth, clientHeight } = this._canvas;
     if (
       this._canvas.width !== clientWidth ||
@@ -44,6 +45,7 @@ export class ContextGL {
     ) {
       this._canvas.width = clientWidth;
       this._canvas.height = clientHeight;
+      globalVars.renderer.reset();
     }
 
     this._width = clientWidth;

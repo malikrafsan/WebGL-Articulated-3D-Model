@@ -40,7 +40,7 @@ export class Animator {
 
   public start() {
     console.log(this._animation);
-    this.stop();
+    // this.stop();
     this.resume();
   }
 

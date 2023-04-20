@@ -123,7 +123,7 @@ export class Renderer {
       throw new Error("No model to render");
     }
 
-    this._contextGL.adjustSize();
+    this._contextGL.adjustSize(globalVars);
     this._contextGL.clear();
 
     const projectionMat = this._projectionMatrix.clone();

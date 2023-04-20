@@ -72,10 +72,14 @@ const main = async () => {
   elmtContainer.activeComponent.innerHTML = t2.name;
   TreeUtils.mapTreeToComponentTree(elmtContainer, t2, globalVars);
 
-  resetView(globalVars);
+  let firstTime = true;
 
   requestAnimationFrame(() => {
     renderer.render(globalVars);
+    if (firstTime) {
+      resetView(globalVars);
+      firstTime = false;
+    }
   });
 };
 
