@@ -9,6 +9,7 @@ import {
   ArticulatedModel,
   MatTransform,
 } from "..";
+import { GlobalVars } from "../structs/GlobalVars";
 
 export class Renderer {
   private _contextGL: ContextGL;
@@ -16,7 +17,7 @@ export class Renderer {
   private _projectionMatrix: Matrix4 = Matrix4.identity();
   private _isShadingOn: boolean = false;
   private _camera: Camera;
-  private _articulatedModel: ArticulatedModel | null = null;
+  // private _articulatedModel: ArticulatedModel | null = null;
 
   constructor(contextGL: ContextGL) {
     this._contextGL = contextGL;
@@ -24,9 +25,9 @@ export class Renderer {
     this.setProjection(CONFIG_RENDERER.DEFAULT_PROJECTION);
   }
 
-  public setModel(articulatedModel: ArticulatedModel) {
-    this._articulatedModel = articulatedModel;
-  }
+  // public setModel(articulatedModel: ArticulatedModel) {
+  //   this._articulatedModel = articulatedModel;
+  // }
 
   public setShading(shading: boolean) {
     this._isShadingOn = shading;
@@ -87,8 +88,10 @@ export class Renderer {
     }
   }
 
-  public render() {
-    if (!this._articulatedModel) {
+  public render(globalVars: GlobalVars) {
+    const articulatedModel = globalVars.model;
+
+    if (!articulatedModel) {
       throw new Error("No model to render");
     }
 
@@ -105,7 +108,7 @@ export class Renderer {
       // .rotateZ(Math.PI)
       .mat;
 
-    this._articulatedModel.draw({
+    articulatedModel.draw({
       pMat: projectionMat,
       vMat: viewMat,
       mMat: modelMat,
@@ -113,6 +116,6 @@ export class Renderer {
       isShadingOn: this._isShadingOn,
     });
 
-    requestAnimationFrame(this.render.bind(this));
+    requestAnimationFrame(() => this.render(globalVars));
   }
 }

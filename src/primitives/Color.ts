@@ -15,6 +15,11 @@ export class Color {
     return [this._r, this._g, this._b, this._a];
   }
 
+  public static fromArray(array: number[]): Color {
+    const a = array.length === 3 ? 1 : array[3];
+    return new Color(array[0], array[1], array[2], a);
+  }
+
   public clone() {
     return new Color(this._r, this._g, this._b, this._a);
   }

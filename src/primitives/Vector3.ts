@@ -13,6 +13,10 @@ export class Vector3 {
     return [this._x1, this._x2, this._x3];
   }
 
+  public static fromArray(array: number[]): Vector3 {
+    return new Vector3(array[0], array[1], array[2]);
+  }
+
   public get x1() {
     return this._x1;
   }

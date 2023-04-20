@@ -16,4 +16,21 @@ export class Vertex {
   public get color(): Color {
     return this._color;
   }
+
+  public toArray() {
+    return {
+      position: this._position.toArray(),
+      color: this._color.toArray(),
+    }
+  }
+
+  public static fromArray(array: {
+    position: number[],
+    color: number[],
+  }) {
+    return new Vertex(
+      Vector3.fromArray(array.position),
+      Color.fromArray(array.color)
+    );
+  }
 }
