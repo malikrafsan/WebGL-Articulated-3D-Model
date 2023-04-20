@@ -84,6 +84,9 @@ export function addElmtListener(globalVars: GlobalVars) {
       globalVars.animator.setAnimation(MINECRAFT_PEOPLE_ANIM);
       // animator = new Animator(MINECRAFT_PEOPLE_ANIM);
     } else if (globalVars.elmtContainer.selectModel.value == "CAR") {
+      globalVars.elmtContainer.showWarningToast(
+        "Using model Car: the animation is intended to be not complete on some frames to test adaptive frame"
+      );
       globalVars.model = new ArticulatedModel(globalVars.contextGL, CAR);
       globalVars.default = new ArticulatedModel(globalVars.contextGL, CAR);
       globalVars.animator.setAnimation(CAR_ANIM);

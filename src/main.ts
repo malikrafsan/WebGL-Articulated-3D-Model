@@ -16,7 +16,11 @@ import {
   ITreeButton,
 } from ".";
 import { Animator } from "./structs/Animator";
-import { addElmtListener, refreshModel, resetView } from "./structs/elmtListener";
+import {
+  addElmtListener,
+  refreshModel,
+  resetView,
+} from "./structs/elmtListener";
 import { GlobalVars } from "./structs/GlobalVars";
 import { TreeUtils } from "./utils/TreeUtils";
 
@@ -45,6 +49,9 @@ const main = async () => {
   const contextGL = new ContextGL(elmtContainer.canvas);
   contextGL.init({ vertexShaderScript, fragmentShaderScript });
 
+  elmtContainer.showWarningToast(
+    "Using model Car: the animation is intended to be not complete on some frames to test adaptive frame"
+  );
   const articulatedModel = new ArticulatedModel(contextGL, CAR);
   const defaultModel = new ArticulatedModel(contextGL, CAR);
   const renderer = new Renderer(contextGL);
@@ -64,7 +71,7 @@ const main = async () => {
     contextGL,
     tree: selectedTree,
     renderer,
-    defaultModel
+    defaultModel,
   });
   // renderer.setModel(globalVars.model);
 
