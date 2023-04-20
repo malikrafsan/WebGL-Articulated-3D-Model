@@ -88,6 +88,7 @@ export interface IGlobalVars {
   elmtContainer: ElmtContainer;
   tree: ITree;
   renderer: Renderer;
+  defaultModel: ArticulatedModel;
 }
 
 export const a = 0;

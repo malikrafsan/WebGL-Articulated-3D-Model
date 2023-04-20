@@ -44,6 +44,7 @@ const main = async () => {
   contextGL.init({ vertexShaderScript, fragmentShaderScript });
 
   const articulatedModel = new ArticulatedModel(contextGL, CUBES);
+  const defaultModel = new ArticulatedModel(contextGL, CUBES);
   const renderer = new Renderer(contextGL);
 
   const t2 = TreeUtils.mapperTree(articulatedModel);
@@ -60,6 +61,7 @@ const main = async () => {
     contextGL,
     tree: selectedTree,
     renderer,
+    defaultModel
   });
   // renderer.setModel(globalVars.model);
 

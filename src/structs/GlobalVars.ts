@@ -16,9 +16,10 @@ export class GlobalVars {
   private _contextGL: ContextGL;
   private _tree: ITree;
   private _renderer: Renderer;
+  private _default: ArticulatedModel;
 
   constructor(props: IGlobalVars) {
-    const { model, animator, elmtContainer, contextGL, tree, renderer } = props;
+    const { model, animator, elmtContainer, contextGL, tree, renderer, defaultModel } = props;
 
     this._model = model;
     this._animator = animator;
@@ -26,6 +27,15 @@ export class GlobalVars {
     this._contextGL = contextGL;
     this._tree = tree;
     this._renderer = renderer;
+    this._default = defaultModel;
+  }
+
+  public get default() {
+    return this._default;
+  }
+
+  public set default(defaultModel: ArticulatedModel) {
+    this._default = defaultModel;
   }
 
   public get model() {

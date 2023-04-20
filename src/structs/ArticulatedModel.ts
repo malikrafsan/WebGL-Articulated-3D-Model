@@ -76,6 +76,15 @@ export class ArticulatedModel {
     };
   }
 
+  public resetTransform(model: ArticulatedModel) {
+    this._transform = new Transform(model.transform)
+    for (let index = 0; index < model.children.length; index++) {
+      const childDefault = model.children[index];
+      const childThis = this.children[index];
+      childThis.resetTransform(childDefault);
+    }
+  }
+
   public setFrame(frame: IFrame, elmtContainer: ElmtContainer) {
     if (this._children.length != frame.children.length) {
       elmtContainer.showWarningToast(
