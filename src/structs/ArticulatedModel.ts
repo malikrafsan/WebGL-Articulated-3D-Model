@@ -11,6 +11,7 @@ import {
   Vector3,
   TextureGL,
   ITransform,
+  IFrame,
 } from "..";
 
 export class ArticulatedModel {
@@ -70,6 +71,17 @@ export class ArticulatedModel {
       children: this._children.map((child) => child.toInterface()),
       texture: this._texture,
     };
+  }
+
+  public setFrame(frame: IFrame) {
+    if (this._children.length != frame.children.length) {
+      throw new Error("Error: frame children length does not match");
+    }
+
+    for (let i = 0; i < this._children.length; i++) {
+      this._children[i].setFrame(frame.children[i]);
+    }
+    this.setTransform(frame.transform);
   }
 
   public setTransform(transform: ITransform) {

@@ -38,6 +38,12 @@ export class ElmtContainer {
   public readonly loadInput: HTMLInputElement;
   public readonly helpBtn: HTMLButtonElement;
   public readonly idxFrame: HTMLDivElement;
+  public readonly saveAsFrame: HTMLButtonElement;
+  public readonly deleteFrame: HTMLButtonElement;
+  public readonly insertAsNextFrame: HTMLElement;
+  public readonly uploadFrame: HTMLInputElement;
+  public readonly saveAnimation: HTMLButtonElement;
+
   // public readonly modalContainer: HTMLDivElement;
   // public readonly modalBackdrop: HTMLDivElement;
   // public readonly modalBody: HTMLDivElement;
@@ -110,6 +116,12 @@ export class ElmtContainer {
     const buttonSave = document.getElementById("save");
     const loadInput = document.getElementById("load");
     const helpBtn = document.getElementById("help");
+
+    const saveAsFrame = document.getElementById("save-as-frame");
+    const deleteFrame = document.getElementById("delete-frame");
+    const insertAsNextFrame = document.getElementById("insert-as-next-frame");
+    const uploadFrame = document.getElementById("uploadframe");
+    const saveAnimation = document.getElementById("save-animation");
 
     // const modalContainer = document.getElementById("modal-container");
     // const modalBackdrop = document.getElementById("modal-backdrop");
@@ -229,6 +241,21 @@ export class ElmtContainer {
     if (!(idxFrame instanceof HTMLDivElement)) {
       throw new Error("Idx frame not found");
     }
+    if (!(saveAsFrame instanceof HTMLButtonElement)) {
+      throw new Error("Save as frame not found");
+    }
+    if (!(deleteFrame instanceof HTMLButtonElement)) {
+      throw new Error("Delete frame not found");
+    }
+    if (!(insertAsNextFrame instanceof HTMLLabelElement)) {
+      throw new Error("Insert as next frame not found");
+    }
+    if (!(uploadFrame instanceof HTMLInputElement)) {
+      throw new Error("Upload frame not found");
+    }
+    if (!(saveAnimation instanceof HTMLButtonElement)) {
+      throw new Error("Save animation not found");
+    }
 
     // if (!(modalContainer instanceof HTMLDivElement)) {
     //   throw new Error("Modal container not found");
@@ -278,6 +305,11 @@ export class ElmtContainer {
     this.buttonSave = buttonSave;
     this.loadInput = loadInput;
     this.helpBtn = helpBtn;
+    this.saveAsFrame = saveAsFrame;
+    this.deleteFrame = deleteFrame;
+    this.insertAsNextFrame = insertAsNextFrame;
+    this.uploadFrame = uploadFrame;
+    this.saveAnimation = saveAnimation;
     // this.modalContainer = modalContainer;
     // this.modalBackdrop = modalBackdrop;
     // this.modalBody = modalBody;

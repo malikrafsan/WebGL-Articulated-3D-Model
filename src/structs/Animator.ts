@@ -1,4 +1,5 @@
-import { IAnimation } from "../types";
+import { IAnimation, IArticulatedModel, IFrame } from "../types";
+import { FileManager } from "../utils";
 import { ArticulatedModel } from "./ArticulatedModel";
 
 export class Animator {
@@ -18,12 +19,8 @@ export class Animator {
   }
 
   public start() {
-    this._interval = setInterval(() => {
-      this.apply();
-      
-      this.idxCurAnimation = this.idxCurAnimation + 1;
-      // TODO: if 
-    }, Animator.TIME_INTERVAL);
+    this.stop();
+    this.resume();
   }
 
   public setOnChange(callback: (idx: number) => void) {
@@ -35,10 +32,13 @@ export class Animator {
       return;
     }
 
-    this._model.setTransform(
-      this._animation.frames[this.idxCurAnimation].transform
-    );
-    this._callback(this.idxCurAnimation);
+    try {
+      this._model.setFrame(this._animation.frames[this.idxCurAnimation]);
+      this._callback(this.idxCurAnimation);
+    } catch (e) {
+      alert(e);
+      clearInterval(this._interval);
+    }
   }
 
   public get idxCurAnimation() {
@@ -62,7 +62,12 @@ export class Animator {
   }
 
   public resume() {
-    this.start();
+    this._interval = setInterval(() => {
+      this.apply();
+
+      this.idxCurAnimation = this.idxCurAnimation + 1;
+      // TODO: if
+    }, Animator.TIME_INTERVAL);
   }
 
   public prev() {
@@ -73,5 +78,72 @@ export class Animator {
   public next() {
     this.idxCurAnimation = this.idxCurAnimation + 1;
     this.apply();
+  }
+
+  public saveCurFrame() {
+    const curFrame = this._animation.frames[this.idxCurAnimation]
+    const json = JSON.stringify(curFrame);
+    FileManager.writeFile("frame.json", json);
+  }
+
+  public saveAsFrame() {
+    const model = this._model;
+    if (!model) {
+      return;
+    }
+
+    const asInterface = model.toInterface();
+    const frame = this.transformToFrame(asInterface);
+    const json = JSON.stringify(frame);
+    FileManager.writeFile("frame.json", json);
+  }
+
+  public transformToFrame(iModel: IArticulatedModel) {
+    const frame: IFrame = {
+      transform: iModel.transform,
+      children: iModel.children.map((child) => this.transformToFrame(child)),
+    };
+    return frame;
+  }
+
+  public loadFrame(file: File) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const data: IFrame = JSON.parse(e.target?.result as string);
+      alert("Frame loaded: " + this.idxCurAnimation);
+
+      const allbefore = this._animation.frames.filter((_, idx) => {
+        return idx <= this.idxCurAnimation;
+      });
+      const allafter = this._animation.frames.filter((_, idx) => {
+        return idx > this.idxCurAnimation;
+      });
+
+      this._animation.frames = [...allbefore, data, ...allafter];
+      this.idxCurAnimation = this.idxCurAnimation + 1;
+
+      // const before = this._animation.frames.slice(0, this.idxCurAnimation);
+      // const after = this._animation.frames.slice(this.idxCurAnimation);
+      // this._animation.frames = [...before, data, ...after];
+
+      // this._animation.frames[this.idxCurAnimation] = data;
+
+
+      // this.idxCurAnimation = this.idxCurAnimation + 1;
+      // this._animation.frames.splice(this.idxCurAnimation, 0, data);
+      this.apply();
+    };
+    reader.readAsText(file);
+  }
+
+  public delCurFrame() {
+    this._animation.frames.splice(this.idxCurAnimation, 1);
+    this.idxCurAnimation = this.idxCurAnimation - 1;
+    this.apply();
+  }
+
+  public saveAnimation() {
+    const json = JSON.stringify(this._animation);
+    FileManager.writeFile("animation.json", json);
   }
 }
