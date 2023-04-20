@@ -8,9 +8,11 @@ export class Transform {
   constructor(transform: ITransform) {
     const { translation, rotation, scale } = transform;
 
-    this._translation = translation;
-    this._rotation = rotation;
-    this._scale = scale;
+    for (let index = 0; index < 3; index++) {
+      this._translation[index] = translation[index];
+      this._rotation[index] = rotation[index];
+      this._scale[index] = scale[index];
+    }
   }
 
   public get translation(): number[] {

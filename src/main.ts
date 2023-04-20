@@ -45,14 +45,15 @@ const main = async () => {
   const contextGL = new ContextGL(elmtContainer.canvas);
   contextGL.init({ vertexShaderScript, fragmentShaderScript });
 
-  const articulatedModel = new ArticulatedModel(contextGL, CAR);
+  const articulatedModel = new ArticulatedModel(contextGL, CUBES);
+  const defaultModel = new ArticulatedModel(contextGL, CUBES);
   const renderer = new Renderer(contextGL);
 
   const t2 = TreeUtils.mapperTree(articulatedModel);
 
   const selectedTree = t2;
 
-  const animator = new Animator(CAR_ANIM, elmtContainer);
+  const animator = new Animator(CUBES_ANIM, elmtContainer);
   animator.setModel(articulatedModel);
   // animator.apply();
 
@@ -63,6 +64,7 @@ const main = async () => {
     contextGL,
     tree: selectedTree,
     renderer,
+    defaultModel
   });
   // renderer.setModel(globalVars.model);
 

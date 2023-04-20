@@ -74,13 +74,19 @@ export function addElmtListener(globalVars: GlobalVars) {
         globalVars.contextGL,
         MINECRAFT_PEOPLE
       );
+      globalVars.default = new ArticulatedModel(
+        globalVars.contextGL,
+        MINECRAFT_PEOPLE
+      );
       globalVars.animator.setAnimation(MINECRAFT_PEOPLE_ANIM);
       // animator = new Animator(MINECRAFT_PEOPLE_ANIM);
     } else if (globalVars.elmtContainer.selectModel.value == "model1") {
       globalVars.model = new ArticulatedModel(globalVars.contextGL, CUBES);
+      globalVars.default = new ArticulatedModel(globalVars.contextGL, CUBES);
       globalVars.animator.setAnimation(CUBES_ANIM);
     } else {
       globalVars.model = new ArticulatedModel(globalVars.contextGL, CUBES);
+      globalVars.default = new ArticulatedModel(globalVars.contextGL, CUBES);
       globalVars.animator.setAnimation(CUBES_ANIM);
     }
     // globalVars.model = new ArticulatedModel(globalVars.contextGL, articulatedModel);
@@ -229,8 +235,11 @@ export function addElmtListener(globalVars: GlobalVars) {
   globalVars.elmtContainer.shaderOn.addEventListener("click", () => {
     globalVars.renderer.setShading(globalVars.elmtContainer.shaderOn.checked);
   });
-  // RESET TODO
-  globalVars.elmtContainer.buttonReset.addEventListener("click", () => {});
+  // RESET
+  globalVars.elmtContainer.buttonReset.addEventListener("click", () => {
+    globalVars.model.resetTransform(globalVars.default);
+    refreshModel(globalVars.elmtContainer, globalVars);
+  });
 
   // SAVE & LOAD
   globalVars.elmtContainer.buttonSave.addEventListener("click", () => {
@@ -247,6 +256,7 @@ export function addElmtListener(globalVars: GlobalVars) {
       // TODO: animation
       TreeUtils.resetTree(globalVars.elmtContainer);
       globalVars.model = new ArticulatedModel(globalVars.contextGL, model);
+      globalVars.default = new ArticulatedModel(globalVars.contextGL, model);
       const tree = TreeUtils.mapperTree(globalVars.model);
       globalVars.tree = tree;
       TreeUtils.mapTreeToComponentTree(
