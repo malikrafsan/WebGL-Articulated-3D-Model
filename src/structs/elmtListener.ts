@@ -13,6 +13,7 @@ import {
   CUBES,
   CUBES_ANIM,
   DOG,
+  DOG_ANIM,
   MINECRAFT_PEOPLE,
   MINECRAFT_PEOPLE_ANIM,
 } from "../models";
@@ -93,7 +94,7 @@ export function addElmtListener(globalVars: GlobalVars) {
     } else if (globalVars.elmtContainer.selectModel.value == "DOG") {
       globalVars.model = new ArticulatedModel(globalVars.contextGL, DOG);
       globalVars.default = new ArticulatedModel(globalVars.contextGL, DOG);
-      // globalVars.animator.setAnimation(CAR_ANIM);
+      globalVars.animator.setAnimation(DOG_ANIM);
     } else {
       globalVars.model = new ArticulatedModel(globalVars.contextGL, CUBES);
       globalVars.default = new ArticulatedModel(globalVars.contextGL, CUBES);
