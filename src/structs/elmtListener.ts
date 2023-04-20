@@ -5,6 +5,7 @@ import { PROJECTION } from "../config";
 import { SaveLoader } from "../utils/SaveLoader";
 import { ArticulatedModel } from ".";
 import { GlobalVars } from "./GlobalVars";
+import { TreeUtils } from "../utils/TreeUtils";
 
 export function addElmtListener(globalVars: GlobalVars) {
     // const animator = globalVars.animator;
@@ -140,6 +141,7 @@ export function addElmtListener(globalVars: GlobalVars) {
   
     // SAVE & LOAD
     globalVars.elmtContainer.buttonSave.addEventListener("click", () => {
+        // TODO: animation
       SaveLoader.saveModel(globalVars.model, "file.json");
     });
     globalVars.elmtContainer.loadInput.addEventListener("change", () => {
@@ -148,11 +150,18 @@ export function addElmtListener(globalVars: GlobalVars) {
         return;
       }
 
-      SaveLoader.loadModel(file, (model) => {
-        console.log("model", model);
-        console.log("globalVars.model", globalVars.model);
+    SaveLoader.loadModel(file, (model) => {
+          // TODO: animation
+        TreeUtils.resetTree(globalVars.elmtContainer);
         globalVars.model = new ArticulatedModel(globalVars.contextGL, model);
-        console.log("globalVars.model", globalVars.model);
+        const tree = TreeUtils.mapperTree(globalVars.model);
+        globalVars.tree = tree;
+        TreeUtils.mapTreeToComponentTree(globalVars.elmtContainer, tree, globalVars);
+        refreshModel(
+          globalVars.elmtContainer,
+          globalVars
+        );
+        globalVars.elmtContainer.activeComponent.innerHTML = tree.name;
       });
     });
   

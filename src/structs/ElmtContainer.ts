@@ -315,11 +315,19 @@ export class ElmtContainer {
     this.unStore(key);
   }
 
-  public clear() {
+  public clearMapElmts() {
     this.mapElmts.forEach((elmt, key) => {
       elmt.remove();
       this.unStore(key);
     });
+  }
+
+  public clearComponent(selector: string) {
+    const elmt = document.querySelector(selector);
+    if (!elmt) {
+      throw new Error("No element found");
+    }
+    elmt.innerHTML = "";
   }
 
   public createButton(props: {
