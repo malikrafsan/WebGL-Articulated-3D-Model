@@ -9,10 +9,12 @@ import {
   Renderer,
   Matrix4,
   MatTransform,
+  ITree,
+  ITreeButton,
 } from ".";
-import { ITree, ITreeButton } from "./structs/tree";
 import { Animator } from "./structs/Animator";
 import { addElmtListener, refreshModel } from "./structs/elmtListener";
+import { GlobalVars } from "./structs/GlobalVars";
 
 const tree = (model: ArticulatedModel, level: number = 0) => {
   const t = {
@@ -36,40 +38,13 @@ const mapperTree = (model: ArticulatedModel, level: number = 0) => {
   return tree;
 };
 
-// interface ITreeSlider extends ITree {
-//   slider: HTMLElement;
-// }
-
-// const mapTreeToSlider = (elmtContainer: ElmtContainer, tree: ITree) => {
-//   const slider = elmtContainer.createSlider({
-//     id: "slider-" + tree.name,
-//     min: -180,
-//     max: 180,
-//     value: 0,
-//     callbackOnChange: (value: number) => {
-//       tree.ref.transform.rotation[0] = value;
-//     },
-//   });
-//   elmtContainer.addElmt("#sliders", slider);
-
-//   const sliderTree: ITreeSlider = {
-//     ...tree,
-//     slider: slider,
-//     children: tree.children.map((child) =>
-//       mapTreeToSlider(elmtContainer, child)
-//     ),
-//   };
-
-//   return sliderTree;
-// };
-
-const mapTreeToComponentTree = (elmtContainer: ElmtContainer, tree: ITree) => {
+const mapTreeToComponentTree = (elmtContainer: ElmtContainer, tree: ITree, globalVars: GlobalVars) => {
   const btn = elmtContainer.createButton({
     id: tree.name,
     depth: tree.level,
     callbackOnClick: () => {
-      selectedTree = tree;
-      refreshModel(elmtContainer);
+      globalVars.tree = tree;
+      refreshModel(elmtContainer, globalVars);
       elmtContainer.activeComponent.innerHTML = tree.name;
     },
   });
@@ -79,7 +54,7 @@ const mapTreeToComponentTree = (elmtContainer: ElmtContainer, tree: ITree) => {
     ...tree,
     button: btn,
     children: tree.children.map((child) =>
-      mapTreeToComponentTree(elmtContainer, child)
+      mapTreeToComponentTree(elmtContainer, child, globalVars)
     ),
   };
 
@@ -99,28 +74,7 @@ const printTree = (tree: any) => {
   tree.children.forEach((child: any) => printTree(child));
 };
 
-const test = () => {
-  const transform = new Transform({
-    translation: [10, 9, 1],
-    rotation: [0, 0, 0],
-    scale: [1, 1, 1],
-  });
-
-  const mat = new Matrix4([
-    [1, 3, 4, 5],
-    [-1, 2, 5, 2],
-    [5, 3, 1, 3],
-    [1, 4, 5, 1],
-  ]);
-  const newMat = new MatTransform(mat).scale(1.1,1.1,1.1);
-
-  console.log("result");
-  console.log(newMat);
-};
-
 const main = async () => {
-  test();
-
   const vertexShaderScript = await FileManager.readFile(
     CONFIG_PATH.VERTEX_SHADER
   );
@@ -133,8 +87,8 @@ const main = async () => {
   contextGL.init({ vertexShaderScript, fragmentShaderScript });
 
   const articulatedModel = new ArticulatedModel(contextGL, CUBES.model);
-  renderer = new Renderer(contextGL);
-  renderer.setModel(articulatedModel);
+  const renderer = new Renderer(contextGL);
+
 
   const t = tree(articulatedModel);
   console.log(t);
@@ -142,21 +96,33 @@ const main = async () => {
 
   const t2 = mapperTree(articulatedModel);
 
-  selectedTree = t2;
+  const selectedTree = t2;
 
   const animator = new Animator(CUBES.animation);
   animator.setModel(articulatedModel);
 
-  addElmtListener(elmtContainer, contextGL, animator, articulatedModel);
-  elmtContainer.activeComponent.innerHTML = t2.name;
-  mapTreeToComponentTree(elmtContainer, t2);
+  const globalVars = new GlobalVars({
+    model: articulatedModel,
+    animator: animator,
+    elmtContainer,
+    contextGL,
+    tree: selectedTree,
+    renderer,
+  });
+  // renderer.setModel(globalVars.model);
 
-  requestAnimationFrame(renderer.render.bind(renderer));
+  addElmtListener(globalVars);
+  elmtContainer.activeComponent.innerHTML = t2.name;
+  mapTreeToComponentTree(elmtContainer, t2, globalVars);
+
+  requestAnimationFrame(() => {
+    renderer.render(globalVars);
+  });
 };
 
 // global variable
-export var selectedTree: ITree;
-export var renderer: Renderer;
+// export var selectedTree: ITree;
+// export var renderer: Renderer;
 
 // main function
 main();

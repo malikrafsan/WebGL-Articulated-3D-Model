@@ -66,15 +66,14 @@ export class ArticulatedModel {
     return {
       name: this._name,
       node: this._node,
-      transform: this._transform.toInterface(),
+      transform: this._transform.ToDegree().toInterface(),
       children: this._children.map((child) => child.toInterface()),
       texture: this._texture,
     };
   }
 
   public setTransform(transform: ITransform) {
-    this._transform = new Transform(transform);
-    this._transform.ToRad();
+    this._transform = new Transform(transform).ToRad();
   }
 
   public get name(): string {

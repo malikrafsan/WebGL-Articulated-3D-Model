@@ -1,154 +1,169 @@
 import { ElmtContainer } from "./ElmtContainer";
 import { ContextGL } from "../webgl";
-import { renderer, selectedTree } from "../main";
 import { Animator } from "../structs/Animator";
 import { PROJECTION } from "../config";
 import { SaveLoader } from "../utils/SaveLoader";
 import { ArticulatedModel } from ".";
+import { GlobalVars } from "./GlobalVars";
 
-export function addElmtListener(elmtContainer: ElmtContainer, contextGL: ContextGL, animator: Animator, model: ArticulatedModel) {
+export function addElmtListener(globalVars: GlobalVars) {
+    // const animator = globalVars.animator;
+    // const elmtContainer = globalVars.elmtContainer;
+    // const contextGL = globalVars.contextGL;
+    // const model = globalVars.model;
+    // const renderer = globalVars.renderer;
+    // const tree = globalVars.tree;
+
     // ANIMATION
-    elmtContainer.buttonAnimationPlay.onclick = () => {
-        animator.start();
+    globalVars.elmtContainer.buttonAnimationPlay.onclick = () => {
+      globalVars.animator.start();
     };
-    elmtContainer.buttonAnimationPause.onclick = () => {
-        animator.pause();
+    globalVars.elmtContainer.buttonAnimationPause.onclick = () => {
+        globalVars.animator.pause();
     };
-    elmtContainer.buttonAnimationStop.onclick = () => {
-        animator.stop();
+    globalVars.elmtContainer.buttonAnimationStop.onclick = () => {
+      globalVars.animator.stop();
     };
-    elmtContainer.buttonAnimationPrev.onclick = () => {
-        animator.prev();
+    globalVars.elmtContainer.buttonAnimationPrev.onclick = () => {
+      globalVars.animator.prev();
     };
-    elmtContainer.buttonAnimationNext.onclick = () => {
-        animator.next();
+    globalVars.elmtContainer.buttonAnimationNext.onclick = () => {
+      globalVars.animator.next();
     };
 
-    animator.setOnChange((idxFrame) => {
-        elmtContainer.idxFrame.innerText = idxFrame.toString();
+    globalVars.animator.setOnChange((idxFrame) => {
+      globalVars.elmtContainer.idxFrame.innerText = idxFrame.toString();
     });
 
-    refreshModel(elmtContainer);
+    refreshModel(globalVars.elmtContainer, globalVars);
     
     // CHANGE OBJECT
-    elmtContainer.selectModel.addEventListener("change", () => {
-  
-    });
+    globalVars.elmtContainer.selectModel.addEventListener("change", () => {});
   
     // TRANSLATION
-    elmtContainer.buttonTranslateLeft.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[0] -= 5;
+    globalVars.elmtContainer.buttonTranslateLeft.addEventListener(
+      "click",
+      () => {
+        globalVars.tree.ref.transform.translation[0] -= 5;
+      }
+    );
+    globalVars.elmtContainer.buttonTranslateRight.addEventListener(
+      "click",
+      () => {
+        globalVars.tree.ref.transform.translation[0] += 5;
+      }
+    );
+    globalVars.elmtContainer.buttonTranslateUp.addEventListener("click", () => {
+      globalVars.tree.ref.transform.translation[1] += 5;
     });
-    elmtContainer.buttonTranslateRight.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[0] += 5;
+    globalVars.elmtContainer.buttonTranslateDown.addEventListener(
+      "click",
+      () => {
+        globalVars.tree.ref.transform.translation[1] -= 5;
+      }
+    );
+    globalVars.elmtContainer.buttonTranslateIn.addEventListener("click", () => {
+      globalVars.tree.ref.transform.translation[2] -= 5;
     });
-    elmtContainer.buttonTranslateUp.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[1] += 5;
-    });
-    elmtContainer.buttonTranslateDown.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[1] -= 5;
-    });
-    elmtContainer.buttonTranslateIn.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[2] -= 5;
-    });
-    elmtContainer.buttonTranslateOut.addEventListener("click", () => {
-        selectedTree.ref.transform.translation[2] += 5;
-    });
+    globalVars.elmtContainer.buttonTranslateOut.addEventListener(
+      "click",
+      () => {
+        globalVars.tree.ref.transform.translation[2] += 5;
+      }
+    );
   
     // SCALING
-    elmtContainer.scaleFactor.addEventListener("change", () => {
-        // do nothing
+    globalVars.elmtContainer.scaleFactor.addEventListener("change", () => {
+      // do nothing
     });
-    elmtContainer.scaleButton.addEventListener("click", () => {
-        for (let index = 0; index < 3; index++) {
-            selectedTree.ref.transform.scale[index] = elmtContainer.scaleFactor.valueAsNumber;
-        }
+    globalVars.elmtContainer.scaleButton.addEventListener("click", () => {
+      for (let index = 0; index < 3; index++) {
+        globalVars.tree.ref.transform.scale[index] =
+          globalVars.elmtContainer.scaleFactor.valueAsNumber;
+      }
     });
-    elmtContainer.buttonEnlarge.addEventListener("click", () => {
-        for (let index = 0; index < 3; index++) {
-            selectedTree.ref.transform.scale[index] += 0.1;
-        }
+    globalVars.elmtContainer.buttonEnlarge.addEventListener("click", () => {
+      for (let index = 0; index < 3; index++) {
+        globalVars.tree.ref.transform.scale[index] += 0.1;
+      }
     });
-    elmtContainer.buttonShrink.addEventListener("click", () => {
-        for (let index = 0; index < 3; index++) {
-            selectedTree.ref.transform.scale[index] -= 0.1;
-        }
+    globalVars.elmtContainer.buttonShrink.addEventListener("click", () => {
+      for (let index = 0; index < 3; index++) {
+        globalVars.tree.ref.transform.scale[index] -= 0.1;
+      }
     });
   
     // ROTATION
-    elmtContainer.rotateXObject.addEventListener("input", () => {
-        selectedTree.ref.transform.rotation[0] = elmtContainer.rotateXObject.valueAsNumber;
+    globalVars.elmtContainer.rotateXObject.addEventListener("input", () => {
+      globalVars.tree.ref.transform.rotation[0] =
+        globalVars.elmtContainer.rotateXObject.valueAsNumber;
     });
-    elmtContainer.rotateYObject.addEventListener("input", () => {
-        selectedTree.ref.transform.rotation[1] = elmtContainer.rotateYObject.valueAsNumber;
+    globalVars.elmtContainer.rotateYObject.addEventListener("input", () => {
+      globalVars.tree.ref.transform.rotation[1] =
+        globalVars.elmtContainer.rotateYObject.valueAsNumber;
     });
-    elmtContainer.rotateZObject.addEventListener("input", () => {
-        selectedTree.ref.transform.rotation[2] = elmtContainer.rotateZObject.valueAsNumber;
+    globalVars.elmtContainer.rotateZObject.addEventListener("input", () => {
+      globalVars.tree.ref.transform.rotation[2] =
+        globalVars.elmtContainer.rotateZObject.valueAsNumber;
     });
   
     // CAMERA
-    elmtContainer.buttonZoomIn.addEventListener("click", () => {
-        
-    });
-    elmtContainer.buttonZoomOut.addEventListener("click", () => {
-  
-    });
-    elmtContainer.cameraRotateX.addEventListener("input", () => {
-  
-    });
-    elmtContainer.cameraRotateY.addEventListener("input", () => {
-  
-    });
-    elmtContainer.cameraRotateZ.addEventListener("input", () => {
-  
-    });
+    globalVars.elmtContainer.buttonZoomIn.addEventListener("click", () => {});
+    globalVars.elmtContainer.buttonZoomOut.addEventListener("click", () => {});
+    globalVars.elmtContainer.cameraRotateX.addEventListener("input", () => {});
+    globalVars.elmtContainer.cameraRotateY.addEventListener("input", () => {});
+    globalVars.elmtContainer.cameraRotateZ.addEventListener("input", () => {});
   
   
     // PROJECTION
-    elmtContainer.buttonProjOrthographic.addEventListener("click", () => {
-        renderer.setProjection(PROJECTION.ORTHOGRAPHIC);
-    });
-    elmtContainer.buttonProjPerspective.addEventListener("click", () => {
-        renderer.setProjection(PROJECTION.PERSPECTIVE);
-    });
-    elmtContainer.buttonProjOblique.addEventListener("click", () => {
-        renderer.setProjection(PROJECTION.OBLIQUE);
+    globalVars.elmtContainer.buttonProjOrthographic.addEventListener(
+      "click",
+      () => {
+        globalVars.renderer.setProjection(PROJECTION.ORTHOGRAPHIC);
+      }
+    );
+    globalVars.elmtContainer.buttonProjPerspective.addEventListener(
+      "click",
+      () => {
+        globalVars.renderer.setProjection(PROJECTION.PERSPECTIVE);
+      }
+    );
+    globalVars.elmtContainer.buttonProjOblique.addEventListener("click", () => {
+      globalVars.renderer.setProjection(PROJECTION.OBLIQUE);
     });
   
     // SHADE
-    elmtContainer.shaderOn.addEventListener("click", () => {
-        
-    });
+    globalVars.elmtContainer.shaderOn.addEventListener("click", () => {});
   
     // RESET
-    elmtContainer.buttonReset.addEventListener("click", () => {
-  
-    });
+    globalVars.elmtContainer.buttonReset.addEventListener("click", () => {});
   
     // SAVE & LOAD
-    elmtContainer.buttonSave.addEventListener("click", () => {
-        SaveLoader.saveModel(model, "file.json");
+    globalVars.elmtContainer.buttonSave.addEventListener("click", () => {
+      SaveLoader.saveModel(globalVars.model, "file.json");
     });
-    elmtContainer.loadInput.addEventListener("change", () => {
-        const file = elmtContainer.loadInput.files?.[0];
-        if (!file) {
-            return;
-        }
+    globalVars.elmtContainer.loadInput.addEventListener("change", () => {
+      const file = globalVars.elmtContainer.loadInput.files?.[0];
+      if (!file) {
+        return;
+      }
 
-        SaveLoader.loadModel(file, (model) => {
-            console.log(model);
-        });
+      SaveLoader.loadModel(file, (model) => {
+        console.log("model", model);
+        console.log("globalVars.model", globalVars.model);
+        globalVars.model = new ArticulatedModel(globalVars.contextGL, model);
+        console.log("globalVars.model", globalVars.model);
+      });
     });
   
     // MODAL
-    elmtContainer.helpBtn.addEventListener("click", () => {
-    });
+    globalVars.elmtContainer.helpBtn.addEventListener("click", () => {});
   
     console.log("addElmtListener");
   }
 
-export function refreshModel(elmtContainer: ElmtContainer) {
-    elmtContainer.rotateXObject.value = selectedTree.ref.transform.rotation[0].toString();
-    elmtContainer.rotateYObject.value = selectedTree.ref.transform.rotation[1].toString();
-    elmtContainer.rotateZObject.value = selectedTree.ref.transform.rotation[2].toString();
+export function refreshModel(elmtContainer: ElmtContainer, globalVars: GlobalVars) {
+    elmtContainer.rotateXObject.value = globalVars.tree.ref.transform.rotation[0].toString();
+    elmtContainer.rotateYObject.value = globalVars.tree.ref.transform.rotation[1].toString();
+    elmtContainer.rotateZObject.value = globalVars.tree.ref.transform.rotation[2].toString();
 }

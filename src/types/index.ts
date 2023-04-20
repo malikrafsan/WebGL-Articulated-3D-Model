@@ -1,4 +1,5 @@
-import { Vertex, AXIS, TEXTURE, PROJECTION } from "..";
+import { Vertex, AXIS, TEXTURE, PROJECTION, ContextGL, ElmtContainer, Renderer, ArticulatedModel } from "..";
+import { Animator } from "../structs/Animator";
 
 export type AXIS_KEYS = keyof typeof AXIS;
 export type AXIS_VALUES = (typeof AXIS)[AXIS_KEYS];
@@ -57,6 +58,26 @@ export interface IAnimation {
 export interface IModelAndAnimation {
   model: IArticulatedModel;
   animation: IAnimation;
+}
+
+export interface ITree {
+  name: string;
+  ref: ArticulatedModel;
+  level: number;
+  children: ITree[];
+}
+
+export interface ITreeButton extends ITree {
+  button: HTMLElement;
+}
+
+export interface IGlobalVars {
+  model: ArticulatedModel;
+  animator: Animator;
+  contextGL: ContextGL;
+  elmtContainer: ElmtContainer;
+  tree: ITree;
+  renderer: Renderer;
 }
 
 export const a = 0;

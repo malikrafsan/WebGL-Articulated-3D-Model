@@ -26,9 +26,19 @@ export class Transform {
   }
 
   public ToRad() {
-    this._rotation = this._rotation.map((value) =>
+    const cloned = this.clone();
+    cloned._rotation = cloned._rotation.map((value) =>
       ExtendedMath.degreeToRad(value)
     );
+    return cloned;
+  }
+
+  public ToDegree() {
+    const cloned = this.clone();
+    cloned._rotation = cloned._rotation.map((value) => {
+      return ExtendedMath.radToDegree(value);
+    });
+    return cloned;
   }
 
   public clone() {
