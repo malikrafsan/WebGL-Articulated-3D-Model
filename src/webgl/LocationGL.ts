@@ -1,4 +1,4 @@
-import { ContextGL } from "..";
+import { ContextGL, LOCATION_GL_CONFIG } from "..";
 
 export class LocationGL {
   public readonly contextGL: ContextGL;
@@ -16,11 +16,13 @@ export class LocationGL {
   public readonly normalMatrix: WebGLUniformLocation;
   public readonly reverseLightDirection: WebGLUniformLocation;
   public readonly worldCameraPosition: WebGLUniformLocation;
-  public readonly shadingOn: WebGLUniformLocation;
+  public readonly isShadingOn: WebGLUniformLocation;
   public readonly textureMode: WebGLUniformLocation;
   public readonly textureImage: WebGLUniformLocation;
   public readonly textureEnvironment: WebGLUniformLocation;
   public readonly textureBump: WebGLUniformLocation;
+  public readonly ambientLight: WebGLUniformLocation;
+  public readonly albedoMultiplier: WebGLUniformLocation;
 
   constructor(contextGL: ContextGL) {
     this.contextGL = contextGL;
@@ -28,37 +30,72 @@ export class LocationGL {
     const gl = this.contextGL.gl;
     const program = this.contextGL.program;
 
-    this.position = gl.getAttribLocation(program, "a_position");
-    this.color = gl.getAttribLocation(program, "a_color");
-    this.normal = gl.getAttribLocation(program, "a_normal");
-    this.tangent = gl.getAttribLocation(program, "a_tangent");
-    this.bitangent = gl.getAttribLocation(program, "a_bitangent");
-    this.textureCoord = gl.getAttribLocation(program, "a_textureCoord");
+    this.position = gl.getAttribLocation(program, LOCATION_GL_CONFIG.POSITION);
+    this.color = gl.getAttribLocation(program, LOCATION_GL_CONFIG.COLOR);
+    this.normal = gl.getAttribLocation(program, LOCATION_GL_CONFIG.NORMAL);
+    this.tangent = gl.getAttribLocation(program, LOCATION_GL_CONFIG.TANGENT);
+    this.bitangent = gl.getAttribLocation(
+      program,
+      LOCATION_GL_CONFIG.BITANGENT
+    );
+    this.textureCoord = gl.getAttribLocation(
+      program,
+      LOCATION_GL_CONFIG.TEXTURE_COORD
+    );
 
     const projectionMatrix = gl.getUniformLocation(
       program,
-      "u_projectionMatrix"
+      LOCATION_GL_CONFIG.PROJECTION_MATRIX
     );
-    const viewMatrix = gl.getUniformLocation(program, "u_viewMatrix");
-    const modelMatrix = gl.getUniformLocation(program, "u_modelMatrix");
-    const normalMatrix = gl.getUniformLocation(program, "u_normalMatrix");
+    const viewMatrix = gl.getUniformLocation(
+      program,
+      LOCATION_GL_CONFIG.VIEW_MATRIX
+    );
+    const modelMatrix = gl.getUniformLocation(
+      program,
+      LOCATION_GL_CONFIG.MODEL_MATRIX
+    );
+    const normalMatrix = gl.getUniformLocation(
+      program,
+      LOCATION_GL_CONFIG.NORMAL_MATRIX
+    );
     const reverseLightDirection = gl.getUniformLocation(
       program,
-      "u_reverseLightDirection"
+      LOCATION_GL_CONFIG.REVERSE_LIGHT_DIRECTION
     );
     const worldCameraPosition = gl.getUniformLocation(
       program,
-      "u_worldCameraPosition"
+      LOCATION_GL_CONFIG.WORLD_CAMERA_POSITION
     );
-    const shadingOn = gl.getUniformLocation(program, "u_shadingOn");
-    const textureMode = gl.getUniformLocation(program, "u_textureMode");
+    const isShadingOn = gl.getUniformLocation(
+      program,
+      LOCATION_GL_CONFIG.SHADING_ON
+    );
+    const textureMode = gl.getUniformLocation(
+      program,
+      LOCATION_GL_CONFIG.TEXTURE_MODE
+    );
 
-    const textureImage = gl.getUniformLocation(program, "u_texture_image");
+    const textureImage = gl.getUniformLocation(
+      program,
+      LOCATION_GL_CONFIG.TEXTURE_IMAGE
+    );
     const textureEnvironment = gl.getUniformLocation(
       program,
-      "u_texture_environment"
+      LOCATION_GL_CONFIG.TEXTURE_ENVIRONMENT
     );
-    const textureBump = gl.getUniformLocation(program, "u_texture_bump");
+    const textureBump = gl.getUniformLocation(
+      program,
+      LOCATION_GL_CONFIG.TEXTURE_BUMP
+    );
+    const ambientLight = gl.getUniformLocation(
+      program,
+      LOCATION_GL_CONFIG.AMBIENT_LIGHT
+    );
+    const albedoMultiplier = gl.getUniformLocation(
+      program,
+      LOCATION_GL_CONFIG.ALBEDO_MULTIPLIER
+    );
 
     if (
       !projectionMatrix ||
@@ -67,11 +104,13 @@ export class LocationGL {
       !normalMatrix ||
       !reverseLightDirection ||
       !worldCameraPosition ||
-      !shadingOn ||
+      !isShadingOn ||
       !textureMode ||
       !textureImage ||
       !textureEnvironment ||
-      !textureBump
+      !textureBump ||
+      !ambientLight || 
+      !albedoMultiplier
     ) {
       throw new Error("Could not find uniform variable");
     }
@@ -82,10 +121,12 @@ export class LocationGL {
     this.normalMatrix = normalMatrix;
     this.reverseLightDirection = reverseLightDirection;
     this.worldCameraPosition = worldCameraPosition;
-    this.shadingOn = shadingOn;
+    this.isShadingOn = isShadingOn;
     this.textureMode = textureMode;
     this.textureImage = textureImage;
     this.textureEnvironment = textureEnvironment;
     this.textureBump = textureBump;
+    this.ambientLight = ambientLight;
+    this.albedoMultiplier = albedoMultiplier;
   }
 }

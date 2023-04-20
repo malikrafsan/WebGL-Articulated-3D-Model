@@ -1,4 +1,4 @@
-import { Color, ContextGL, ExtendedMath } from "..";
+import { Color, ContextGL, ExtendedMath, Vector3 } from "..";
 
 export const CONFIG_PATH = {
   VERTEX_SHADER: "shaders/vertex.glsl",
@@ -112,4 +112,29 @@ export const configProjection = (contextGL: ContextGL) => {
 
 export const CONFIG_RENDERER = {
   DEFAULT_PROJECTION: PROJECTION.ORTHOGRAPHIC,
+  REVERSE_LIGHT_DIRECTION: new Vector3(0.2, 0.4, 1).normalize().toArray(),
+  AMBIENT_LIGHT: new Vector3(0.3, 0.3, 0.3).toArray(),
+  ALBEDO_MULTIPLIER: 0.3,
+} as const;
+
+export const LOCATION_GL_CONFIG = {
+  POSITION: "a_vPos",
+  COLOR: "a_vCol",
+  NORMAL: "a_vNorm",
+  TANGENT: "a_vTangent",
+  BITANGENT: "a_vBitangent",
+  TEXTURE_COORD: "a_vTextureCoord",
+  PROJECTION_MATRIX: "u_vProjMat",
+  VIEW_MATRIX: "u_vViewMat",
+  MODEL_MATRIX: "u_vModelMat",
+  NORMAL_MATRIX: "u_vNormalMatrix",
+  REVERSE_LIGHT_DIRECTION: "u_fReverseLightDir",
+  WORLD_CAMERA_POSITION: "u_fWorldCamPos",
+  SHADING_ON: "u_fIsShadingOn",
+  TEXTURE_MODE: "u_fTextureMode",
+  TEXTURE_IMAGE: "u_fTextureImg",
+  TEXTURE_ENVIRONMENT: "u_fTextureReflective",
+  TEXTURE_BUMP: "u_fTextureBump",
+  AMBIENT_LIGHT: "u_fAmbientLight",
+  ALBEDO_MULTIPLIER: "u_fAlbedoMultiplier",
 } as const;
