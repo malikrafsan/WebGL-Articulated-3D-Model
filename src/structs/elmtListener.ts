@@ -6,6 +6,7 @@ import { SaveLoader } from "../utils/SaveLoader";
 import { ArticulatedModel } from ".";
 import { GlobalVars } from "./GlobalVars";
 import { TreeUtils } from "../utils/TreeUtils";
+import { ExtendedMath } from "../utils";
 
 export function addElmtListener(globalVars: GlobalVars) {
     // const animator = globalVars.animator;
@@ -109,11 +110,18 @@ export function addElmtListener(globalVars: GlobalVars) {
     });
   
     // CAMERA
-    globalVars.elmtContainer.buttonZoomIn.addEventListener("click", () => {});
-    globalVars.elmtContainer.buttonZoomOut.addEventListener("click", () => {});
-    globalVars.elmtContainer.cameraRotateX.addEventListener("input", () => {});
-    globalVars.elmtContainer.cameraRotateY.addEventListener("input", () => {});
-    globalVars.elmtContainer.cameraRotateZ.addEventListener("input", () => {});
+    globalVars.elmtContainer.buttonZoomIn.addEventListener("click", () => {
+        globalVars.renderer.setCameraRadius(0.9);
+    });
+    globalVars.elmtContainer.buttonZoomOut.addEventListener("click", () => {
+        globalVars.renderer.setCameraRadius(1.1);
+    });
+    globalVars.elmtContainer.cameraRotateX.addEventListener("input", () => {
+        globalVars.renderer.setCameraAngleY(globalVars.elmtContainer.cameraRotateX.valueAsNumber);
+    });
+    globalVars.elmtContainer.cameraRotateY.addEventListener("input", () => {
+        globalVars.renderer.setCameraAngleX(globalVars.elmtContainer.cameraRotateY.valueAsNumber);
+    }); 
   
   
     // PROJECTION
@@ -130,12 +138,13 @@ export function addElmtListener(globalVars: GlobalVars) {
       }
     );
     globalVars.elmtContainer.buttonProjOblique.addEventListener("click", () => {
-      globalVars.renderer.setProjection(PROJECTION.OBLIQUE);
+        globalVars.renderer.setProjection(PROJECTION.OBLIQUE);
     });
   
     // SHADE
-    globalVars.elmtContainer.shaderOn.addEventListener("click", () => {});
-  
+    globalVars.elmtContainer.shaderOn.addEventListener("click", () => {
+        globalVars.renderer.setShading(globalVars.elmtContainer.shaderOn.checked);
+    });
     // RESET
     globalVars.elmtContainer.buttonReset.addEventListener("click", () => {});
   

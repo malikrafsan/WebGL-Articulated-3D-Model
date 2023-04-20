@@ -268,7 +268,7 @@ export class Matrix4 {
   public static oblique(props: { theta: number; phi: number }) {
     const { theta, phi } = props;
 
-    const cotTheta = - 1 / Math.tan(theta);
+    const cotTheta = 1 / Math.tan(theta);
     const cotPhi = 1 / Math.tan(phi);
 
     const mat = new Matrix4([

@@ -17,7 +17,6 @@ export class ElmtContainer {
   public readonly buttonEnlarge: HTMLButtonElement;
   public readonly cameraRotateX: HTMLInputElement;
   public readonly cameraRotateY: HTMLInputElement;
-  public readonly cameraRotateZ: HTMLInputElement;
   public readonly buttonZoomIn: HTMLButtonElement;
   public readonly buttonZoomOut: HTMLButtonElement;
   public readonly shaderOn: HTMLInputElement;
@@ -75,7 +74,6 @@ export class ElmtContainer {
 
     const cameraRotateX = document.getElementById("cameraX");
     const cameraRotateY = document.getElementById("cameraY");
-    const cameraRotateZ = document.getElementById("cameraZ");
 
     const buttonZoomIn = document.getElementById("button-zoom-in");
     const buttonZoomOut = document.getElementById("button-zoom-out");
@@ -166,9 +164,6 @@ export class ElmtContainer {
     if (!(cameraRotateY instanceof HTMLInputElement)) {
       throw new Error("Camera rotate Y not found");
     }
-    if (!(cameraRotateZ instanceof HTMLInputElement)) {
-      throw new Error("Camera rotate Z not found");
-    }
     if (!(buttonZoomIn instanceof HTMLButtonElement)) {
       throw new Error("Button zoom in not found");
     }
@@ -257,7 +252,6 @@ export class ElmtContainer {
     this.buttonEnlarge = buttonEnlarge;
     this.cameraRotateX = cameraRotateX;
     this.cameraRotateY = cameraRotateY;
-    this.cameraRotateZ = cameraRotateZ;
     this.buttonZoomIn = buttonZoomIn;
     this.buttonZoomOut = buttonZoomOut;
     this.shaderOn = shaderOn;

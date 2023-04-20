@@ -33,6 +33,22 @@ export class Renderer {
     this._isShadingOn = shading;
   }
 
+  public setCameraRadius(radius: number) {
+    this._camera.setRadius(radius);
+  }
+
+  public setCameraAngleX(angle: number) {
+    this._camera.setangleX(angle);
+  }
+
+  public setCameraAngleY(angle: number) {
+    this._camera.setangleY(angle);
+  }
+
+  public getCameraAngle() {
+    return this._camera.radius;
+  }
+
   public setProjection(projection: PROJECTION_VALUES) {
     this._projection = projection;
 

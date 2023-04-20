@@ -3,7 +3,9 @@ import { Matrix4, Vector3, ExtendedMath, MatTransform } from "..";
 export class Camera {
   private _target = new Vector3(0, 0, 0);
   private _up = new Vector3(0, 1, 0);
-  private _angle = 0;
+  private _angleX = 0;
+  private _angleY = 0;
+  private _rotateX = true;
   private _radius: number = 500;
   private _lookAt: Matrix4;
 
@@ -12,22 +14,29 @@ export class Camera {
   }
 
   public reset() {
-    this._angle = ExtendedMath.degreeToRad(0);
-    this._radius = 200;
+    this._angleX = ExtendedMath.degreeToRad(0);
+    this._angleY = ExtendedMath.degreeToRad(0);
+    this._radius = 500;
+    this._lookAt = this.recalcLookAt();
+  }
+  
+  public setangleX(angleX: number) {
+    this._angleX = angleX;
+    this._lookAt = this.recalcLookAt();
+    console.log(this._lookAt);
+  }
+
+  public setangleY(angleY: number) {
+    this._angleY = angleY;
     this._lookAt = this.recalcLookAt();
   }
 
-  public setAngle(angle: number) {
-    this._angle = angle;
-    this._lookAt = this.recalcLookAt();
-  }
-
-  public get angle(): number {
-    return this._angle;
+  public get angle(): Array<Number> {
+    return [this._angleX, this._angleY];
   }
 
   public setRadius(radius: number) {
-    this._radius = radius;
+    this._radius *= radius;
     this._lookAt = this.recalcLookAt();
   }
 
@@ -41,7 +50,10 @@ export class Camera {
 
   public get position(): Vector3 {
     const camMat = new MatTransform(Matrix4.identity());
-    camMat.rotateY(this._angle);
+
+    camMat.rotateX(this._angleX);
+    camMat.rotateY(this._angleY);
+
     camMat.translate(0, 0, this._radius);
 
     const pos = new Vector3(
