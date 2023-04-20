@@ -45,8 +45,20 @@ export class Renderer {
     this._camera.setangleY(angle);
   }
 
-  public getCameraAngle() {
+  public getCameraRadius() {
     return this._camera.radius;
+  }
+
+  public getCameraAngleX() {
+    return this._camera.angle[0];
+  }
+
+  public getCameraAngleY() {
+    return this._camera.angle[1];
+  }
+
+  public get isShadingOn() {
+    return this._isShadingOn;
   }
 
   public setProjection(projection: PROJECTION_VALUES) {
@@ -133,5 +145,13 @@ export class Renderer {
     });
 
     requestAnimationFrame(() => this.render(globalVars));
+  }
+
+  public reset() {
+    console.log(this._camera);
+    this._camera = new Camera();
+    console.log(this._camera);
+    this.setProjection(CONFIG_RENDERER.DEFAULT_PROJECTION);
+    this._isShadingOn = false;
   }
 }

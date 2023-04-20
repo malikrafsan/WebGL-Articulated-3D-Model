@@ -16,7 +16,7 @@ import {
   ITreeButton,
 } from ".";
 import { Animator } from "./structs/Animator";
-import { addElmtListener, refreshModel } from "./structs/elmtListener";
+import { addElmtListener, refreshModel, resetView } from "./structs/elmtListener";
 import { GlobalVars } from "./structs/GlobalVars";
 import { TreeUtils } from "./utils/TreeUtils";
 
@@ -45,15 +45,15 @@ const main = async () => {
   const contextGL = new ContextGL(elmtContainer.canvas);
   contextGL.init({ vertexShaderScript, fragmentShaderScript });
 
-  const articulatedModel = new ArticulatedModel(contextGL, CUBES);
-  const defaultModel = new ArticulatedModel(contextGL, CUBES);
+  const articulatedModel = new ArticulatedModel(contextGL, CAR);
+  const defaultModel = new ArticulatedModel(contextGL, CAR);
   const renderer = new Renderer(contextGL);
 
   const t2 = TreeUtils.mapperTree(articulatedModel);
 
   const selectedTree = t2;
 
-  const animator = new Animator(CUBES_ANIM, elmtContainer);
+  const animator = new Animator(CAR_ANIM, elmtContainer);
   animator.setModel(articulatedModel);
   // animator.apply();
 
@@ -71,6 +71,8 @@ const main = async () => {
   addElmtListener(globalVars);
   elmtContainer.activeComponent.innerHTML = t2.name;
   TreeUtils.mapTreeToComponentTree(elmtContainer, t2, globalVars);
+
+  resetView(globalVars);
 
   requestAnimationFrame(() => {
     renderer.render(globalVars);

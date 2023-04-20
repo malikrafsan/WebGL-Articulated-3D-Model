@@ -8,6 +8,8 @@ import { GlobalVars } from "./GlobalVars";
 import { TreeUtils } from "../utils/TreeUtils";
 import { ExtendedMath } from "../utils";
 import {
+  CAR,
+  CAR_ANIM,
   CUBES,
   CUBES_ANIM,
   MINECRAFT_PEOPLE,
@@ -80,10 +82,10 @@ export function addElmtListener(globalVars: GlobalVars) {
       );
       globalVars.animator.setAnimation(MINECRAFT_PEOPLE_ANIM);
       // animator = new Animator(MINECRAFT_PEOPLE_ANIM);
-    } else if (globalVars.elmtContainer.selectModel.value == "model1") {
-      globalVars.model = new ArticulatedModel(globalVars.contextGL, CUBES);
-      globalVars.default = new ArticulatedModel(globalVars.contextGL, CUBES);
-      globalVars.animator.setAnimation(CUBES_ANIM);
+    } else if (globalVars.elmtContainer.selectModel.value == "CAR") {
+      globalVars.model = new ArticulatedModel(globalVars.contextGL, CAR);
+      globalVars.default = new ArticulatedModel(globalVars.contextGL, CAR);
+      globalVars.animator.setAnimation(CAR_ANIM);
     } else {
       globalVars.model = new ArticulatedModel(globalVars.contextGL, CUBES);
       globalVars.default = new ArticulatedModel(globalVars.contextGL, CUBES);
@@ -237,8 +239,9 @@ export function addElmtListener(globalVars: GlobalVars) {
   });
   // RESET
   globalVars.elmtContainer.buttonReset.addEventListener("click", () => {
-    globalVars.model.resetTransform(globalVars.default);
-    refreshModel(globalVars.elmtContainer, globalVars);
+    resetView(globalVars);
+    // globalVars.model.resetTransform(globalVars.default);
+    // refreshModel(globalVars.elmtContainer, globalVars);
   });
 
   // SAVE & LOAD
@@ -288,3 +291,19 @@ export function refreshModel(
   elmtContainer.rotateZObject.value =
     globalVars.tree.ref.transform.rotation[2].toString();
 }
+
+export const refreshRendererControl = (
+  globalVars: GlobalVars,
+) => {
+  globalVars.elmtContainer.cameraRotateX.value = globalVars.renderer.getCameraAngleX().toString();
+  globalVars.elmtContainer.cameraRotateY.value = globalVars.renderer.getCameraAngleY().toString();
+  globalVars.elmtContainer.shaderOn.checked = globalVars.renderer.isShadingOn;
+}
+
+export const resetView = (globalVars: GlobalVars) => {
+  console.log("resetView");
+  globalVars.model.resetTransform(globalVars.default);
+  refreshModel(globalVars.elmtContainer, globalVars);
+  globalVars.renderer.reset();
+  refreshRendererControl(globalVars);
+};
