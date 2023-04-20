@@ -22,6 +22,7 @@ export class LocationGL {
   public readonly textureEnvironment: WebGLUniformLocation;
   public readonly textureBump: WebGLUniformLocation;
   public readonly ambientLight: WebGLUniformLocation;
+  public readonly albedoMultiplier: WebGLUniformLocation;
 
   constructor(contextGL: ContextGL) {
     this.contextGL = contextGL;
@@ -91,6 +92,10 @@ export class LocationGL {
       program,
       LOCATION_GL_CONFIG.AMBIENT_LIGHT
     );
+    const albedoMultiplier = gl.getUniformLocation(
+      program,
+      LOCATION_GL_CONFIG.ALBEDO_MULTIPLIER
+    );
 
     if (
       !projectionMatrix ||
@@ -104,7 +109,8 @@ export class LocationGL {
       !textureImage ||
       !textureEnvironment ||
       !textureBump ||
-      !ambientLight
+      !ambientLight || 
+      !albedoMultiplier
     ) {
       throw new Error("Could not find uniform variable");
     }
@@ -121,5 +127,6 @@ export class LocationGL {
     this.textureEnvironment = textureEnvironment;
     this.textureBump = textureBump;
     this.ambientLight = ambientLight;
+    this.albedoMultiplier = albedoMultiplier;
   }
 }

@@ -114,6 +114,7 @@ export const CONFIG_RENDERER = {
   DEFAULT_PROJECTION: PROJECTION.ORTHOGRAPHIC,
   REVERSE_LIGHT_DIRECTION: new Vector3(0.2, 0.4, 1).normalize().toArray(),
   AMBIENT_LIGHT: new Vector3(0.3, 0.3, 0.3).toArray(),
+  ALBEDO_MULTIPLIER: 0.3,
 } as const;
 
 export const LOCATION_GL_CONFIG = {
@@ -135,4 +136,5 @@ export const LOCATION_GL_CONFIG = {
   TEXTURE_ENVIRONMENT: "u_fTextureReflective",
   TEXTURE_BUMP: "u_fTextureBump",
   AMBIENT_LIGHT: "u_fAmbientLight",
+  ALBEDO_MULTIPLIER: "u_fAlbedoMultiplier",
 } as const;

@@ -386,7 +386,11 @@ export class ArticulatedModel {
     gl.uniform3fv(
       this._locationGL.ambientLight,
       CONFIG_RENDERER.AMBIENT_LIGHT,
-    )
+    );
+    gl.uniform1f(
+      this._locationGL.albedoMultiplier,
+      CONFIG_RENDERER.ALBEDO_MULTIPLIER,
+    );
 
     const viewModelMat = Matrix4.multiply(props.viewMat, props.modelMat);
     const normalMat = viewModelMat.clone().inverse().transpose();
