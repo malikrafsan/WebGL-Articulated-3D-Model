@@ -32,6 +32,25 @@ export function addElmtListener(globalVars: GlobalVars) {
     globalVars.elmtContainer.buttonAnimationNext.onclick = () => {
       globalVars.animator.next();
     };
+    globalVars.elmtContainer.saveAsFrame.onclick = () => {
+        globalVars.animator.saveAsFrame();
+    };
+    globalVars.elmtContainer.deleteFrame.onclick = () => {
+        globalVars.animator.delCurFrame();
+    }
+    globalVars.elmtContainer.uploadFrame.addEventListener("change", () => {
+        const file = globalVars.elmtContainer.uploadFrame.files?.[0];
+        console.log(file);
+        if (!file) {
+            return;
+        }
+        globalVars.animator.loadFrame(file);
+        globalVars.elmtContainer.uploadFrame.value = "";
+        globalVars.elmtContainer.uploadFrame.files = null;
+    });
+    globalVars.elmtContainer.saveAnimation.onclick = () => {
+        globalVars.animator.saveAnimation();
+    }
 
     globalVars.animator.setOnChange((idxFrame) => {
       globalVars.elmtContainer.idxFrame.innerText = idxFrame.toString();
@@ -171,7 +190,9 @@ export function addElmtListener(globalVars: GlobalVars) {
           globalVars
         );
         globalVars.elmtContainer.activeComponent.innerHTML = tree.name;
-      });
+    });
+        globalVars.elmtContainer.loadInput.files = null;
+        globalVars.elmtContainer.loadInput.value = "";
     });
   
     // MODAL

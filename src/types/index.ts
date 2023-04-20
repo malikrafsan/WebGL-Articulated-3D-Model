@@ -48,6 +48,7 @@ export interface IArticulatedModel {
 export interface IFrame {
   // TODO: add more required properties
   transform: ITransform;
+  children: IFrame[];
 }
 
 export interface IAnimation {

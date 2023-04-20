@@ -5,6 +5,7 @@ import {
   CONFIG_PATH,
   ContextGL,
   CUBES,
+  CUBES_ANIM,
   Transform,
   Renderer,
   Matrix4,
@@ -42,7 +43,7 @@ const main = async () => {
   const contextGL = new ContextGL(elmtContainer.canvas);
   contextGL.init({ vertexShaderScript, fragmentShaderScript });
 
-  const articulatedModel = new ArticulatedModel(contextGL, CUBES.model);
+  const articulatedModel = new ArticulatedModel(contextGL, CUBES);
   const renderer = new Renderer(contextGL);
 
 
@@ -50,7 +51,7 @@ const main = async () => {
 
   const selectedTree = t2;
 
-  const animator = new Animator(CUBES.animation);
+  const animator = new Animator(CUBES_ANIM);
   animator.setModel(articulatedModel);
 
   const globalVars = new GlobalVars({
