@@ -295,7 +295,7 @@ export const CAR_ANIM: IAnimation = {
   frames: [
     {
       transform: {
-        translation: [315, 0, 0],
+        translation: [310, 0, 0],
         rotation: [0, 0, 0],
         scale: [1.5, 1.5, 1.5],
       },
@@ -344,7 +344,7 @@ export const CAR_ANIM: IAnimation = {
     },
     {
       transform: {
-        translation: [210, 0, 0],
+        translation: [240, 0, 0],
         rotation: [0, 0, 0],
         scale: [1.5, 1.5, 1.5],
       },
@@ -393,7 +393,7 @@ export const CAR_ANIM: IAnimation = {
     },
     {
       transform: {
-        translation: [105, 0, 0],
+        translation: [150, 0, 0],
         rotation: [0, 0, 0],
         scale: [1.5, 1.5, 1.5],
       },
@@ -442,7 +442,7 @@ export const CAR_ANIM: IAnimation = {
     },
     {
       transform: {
-        translation: [0, 0, 0],
+        translation: [60, 0, 0],
         rotation: [0, 0, 0],
         scale: [1.5, 1.5, 1.5],
       },
@@ -491,8 +491,8 @@ export const CAR_ANIM: IAnimation = {
     },
     {
       transform: {
-        translation: [-105, 0, 0],
-        rotation: [0, 0, 0],
+        translation: [-10, 0, 0],
+        rotation: [0, 0, 25.783100780887047],
         scale: [1.5, 1.5, 1.5],
       },
       children: [
@@ -540,14 +540,14 @@ export const CAR_ANIM: IAnimation = {
     },
     {
       transform: {
-        translation: [-210, 0, 0],
-        rotation: [0, 0, 0],
+        translation: [-40, 0, 0],
+        rotation: [0, 0, 34.37746770784939],
         scale: [1.5, 1.5, 1.5],
       },
       children: [
         {
           transform: {
-            translation: [130, 50, -30],
+            translation: [130, 100, -30],
             rotation: [0, 0, 0],
             scale: [1, 3, 1],
           },
@@ -555,7 +555,7 @@ export const CAR_ANIM: IAnimation = {
         },
         {
           transform: {
-            translation: [10, -10, 10],
+            translation: [10, -50, 10],
             rotation: [0, 0, 0],
             scale: [1, 1, 1],
           },
@@ -563,7 +563,7 @@ export const CAR_ANIM: IAnimation = {
         },
         {
           transform: {
-            translation: [160, -10, 10],
+            translation: [160, -50, 10],
             rotation: [0, 0, 0],
             scale: [1, 1, 1],
           },
@@ -571,7 +571,7 @@ export const CAR_ANIM: IAnimation = {
         },
         {
           transform: {
-            translation: [160, -10, -60],
+            translation: [160, -30, -60],
             rotation: [0, 0, 0],
             scale: [1, 1, 1],
           },
@@ -579,7 +579,7 @@ export const CAR_ANIM: IAnimation = {
         },
         {
           transform: {
-            translation: [10, -10, -60],
+            translation: [10, -30, -60],
             rotation: [0, 0, 0],
             scale: [1, 1, 1],
           },
@@ -589,46 +589,48 @@ export const CAR_ANIM: IAnimation = {
     },
     {
       transform: {
-        translation: [-315, 0, 0],
-        rotation: [0, 0, 0],
+        translation: [-40, 0, 0],
+        rotation: [-17.188733853924695, 20.05352282957881, 60.16056848873644],
         scale: [1.5, 1.5, 1.5],
       },
       children: [
         {
           transform: {
-            translation: [130, 50, -30],
-            rotation: [0, 0, 0],
+            translation: [80, 150, -30],
+            rotation: [
+              25.783100780887047, 80.21409131831524, -22.91831180523293,
+            ],
             scale: [1, 3, 1],
           },
           children: [],
         },
         {
           transform: {
-            translation: [10, -10, 10],
-            rotation: [0, 0, 0],
+            translation: [10, -100, 10],
+            rotation: [0, 28.64788975654116, 0],
+            scale: [1.1, 1.1, 1.1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [160, -120, 10],
+            rotation: [-42.97183463481174, 0, 0],
             scale: [1, 1, 1],
           },
           children: [],
         },
         {
           transform: {
-            translation: [160, -10, 10],
-            rotation: [0, 0, 0],
+            translation: [200, -60, -60],
+            rotation: [0, -57.29577951308232, 0],
             scale: [1, 1, 1],
           },
           children: [],
         },
         {
           transform: {
-            translation: [160, -10, -60],
-            rotation: [0, 0, 0],
-            scale: [1, 1, 1],
-          },
-          children: [],
-        },
-        {
-          transform: {
-            translation: [10, -10, -60],
+            translation: [10, -60, -100],
             rotation: [0, 0, 0],
             scale: [1, 1, 1],
           },
@@ -638,46 +640,48 @@ export const CAR_ANIM: IAnimation = {
     },
     {
       transform: {
-        translation: [-420, 0, 0],
-        rotation: [0, 0, 0],
+        translation: [10, -50, 0],
+        rotation: [-17.188733853924695, 20.05352282957881, 60.16056848873644],
         scale: [1.5, 1.5, 1.5],
       },
       children: [
         {
           transform: {
-            translation: [130, 50, -30],
-            rotation: [0, 0, 0],
-            scale: [1, 3, 1],
+            translation: [80, 150, -30],
+            rotation: [
+              25.783100780887047, 105.9971920992023, -22.91831180523293,
+            ],
+            scale: [1.6000000000000005, 3.6000000000000005, 1.6000000000000005],
           },
           children: [],
         },
         {
           transform: {
-            translation: [10, -10, 10],
-            rotation: [0, 0, 0],
+            translation: [10, -100, 10],
+            rotation: [0, 28.64788975654116, 0],
+            scale: [1.1, 1.1, 1.1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [160, -120, 10],
+            rotation: [-42.97183463481174, 0, 0],
             scale: [1, 1, 1],
           },
           children: [],
         },
         {
           transform: {
-            translation: [160, -10, 10],
-            rotation: [0, 0, 0],
+            translation: [200, -60, -60],
+            rotation: [0, -57.29577951308232, 0],
             scale: [1, 1, 1],
           },
           children: [],
         },
         {
           transform: {
-            translation: [160, -10, -60],
-            rotation: [0, 0, 0],
-            scale: [1, 1, 1],
-          },
-          children: [],
-        },
-        {
-          transform: {
-            translation: [10, -10, -60],
+            translation: [10, -60, -100],
             rotation: [0, 0, 0],
             scale: [1, 1, 1],
           },
@@ -687,46 +691,48 @@ export const CAR_ANIM: IAnimation = {
     },
     {
       transform: {
-        translation: [-525, 0, 0],
-        rotation: [0, 0, 0],
+        translation: [70, -120, 0],
+        rotation: [-34.37746770784939, 34.37746770784939, 63.02535746439057],
         scale: [1.5, 1.5, 1.5],
       },
       children: [
         {
           transform: {
-            translation: [130, 50, -30],
-            rotation: [0, 0, 0],
-            scale: [1, 3, 1],
+            translation: [80, 150, -30],
+            rotation: [
+              25.783100780887047, 105.9971920992023, -22.91831180523293,
+            ],
+            scale: [1.6000000000000005, 3.6000000000000005, 1.6000000000000005],
           },
           children: [],
         },
         {
           transform: {
-            translation: [10, -10, 10],
-            rotation: [0, 0, 0],
+            translation: [10, -100, 10],
+            rotation: [0, 28.64788975654116, 0],
+            scale: [1.1, 1.1, 1.1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [160, -120, 10],
+            rotation: [-42.97183463481174, 0, 0],
             scale: [1, 1, 1],
           },
           children: [],
         },
         {
           transform: {
-            translation: [160, -10, 10],
-            rotation: [0, 0, 0],
+            translation: [200, -60, -60],
+            rotation: [0, -57.29577951308232, 0],
             scale: [1, 1, 1],
           },
           children: [],
         },
         {
           transform: {
-            translation: [160, -10, -60],
-            rotation: [0, 0, 0],
-            scale: [1, 1, 1],
-          },
-          children: [],
-        },
-        {
-          transform: {
-            translation: [10, -10, -60],
+            translation: [10, -60, -100],
             rotation: [0, 0, 0],
             scale: [1, 1, 1],
           },
@@ -736,46 +742,303 @@ export const CAR_ANIM: IAnimation = {
     },
     {
       transform: {
-        translation: [-630, 0, 0],
-        rotation: [0, 0, 0],
+        translation: [130, -160, 0],
+        rotation: [-34.37746770784939, 34.37746770784939, 63.02535746439057],
         scale: [1.5, 1.5, 1.5],
       },
       children: [
         {
           transform: {
-            translation: [130, 50, -30],
-            rotation: [0, 0, 0],
-            scale: [1, 3, 1],
+            translation: [80, 150, -30],
+            rotation: [
+              5.729577951308232, 131.78029288008932, 28.64788975654116,
+            ],
+            scale: [1.6000000000000005, 3.6000000000000005, 1.6000000000000005],
           },
           children: [],
         },
         {
           transform: {
-            translation: [10, -10, 10],
-            rotation: [0, 0, 0],
+            translation: [10, -100, 10],
+            rotation: [0, 28.64788975654116, 0],
+            scale: [1.1, 1.1, 1.1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [160, -120, 10],
+            rotation: [-42.97183463481174, 0, 0],
             scale: [1, 1, 1],
           },
           children: [],
         },
         {
           transform: {
-            translation: [160, -10, 10],
-            rotation: [0, 0, 0],
+            translation: [200, -60, -60],
+            rotation: [0, -57.29577951308232, 0],
             scale: [1, 1, 1],
           },
           children: [],
         },
         {
           transform: {
-            translation: [160, -10, -60],
+            translation: [10, -60, -100],
             rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+      ],
+    },
+    {
+      transform: {
+        translation: [200, -260, 0],
+        rotation: [-34.37746770784939, 34.37746770784939, 63.02535746439057],
+        scale: [1.5, 1.5, 1.5],
+      },
+      children: [
+        {
+          transform: {
+            translation: [80, 110, -30],
+            rotation: [
+              5.729577951308232, 131.78029288008932, 28.64788975654116,
+            ],
+            scale: [1.6000000000000005, 3.6000000000000005, 1.6000000000000005],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [10, -100, 10],
+            rotation: [0, 28.64788975654116, 0],
+            scale: [1.1, 1.1, 1.1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [160, -120, 10],
+            rotation: [-42.97183463481174, 0, 0],
             scale: [1, 1, 1],
           },
           children: [],
         },
         {
           transform: {
-            translation: [10, -10, -60],
+            translation: [200, -60, -60],
+            rotation: [0, -57.29577951308232, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [10, -60, -100],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+      ],
+    },
+    {
+      transform: {
+        translation: [280, -350, 0],
+        rotation: [-34.37746770784939, 34.37746770784939, 63.02535746439057],
+        scale: [1.5, 1.5, 1.5],
+      },
+      children: [
+        {
+          transform: {
+            translation: [80, 110, -30],
+            rotation: [
+              5.729577951308232, 131.78029288008932, 28.64788975654116,
+            ],
+            scale: [1.6000000000000005, 3.6000000000000005, 1.6000000000000005],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [10, -100, 10],
+            rotation: [0, 28.64788975654116, 0],
+            scale: [1.1, 1.1, 1.1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [160, -120, 10],
+            rotation: [-42.97183463481174, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [200, -60, -60],
+            rotation: [0, -57.29577951308232, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [10, -60, -100],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+      ],
+    },
+    {
+      transform: {
+        translation: [280, -350, 0],
+        rotation: [-34.37746770784939, 34.37746770784939, 63.02535746439057],
+        scale: [1.5, 1.5, 1.5],
+      },
+      children: [
+        {
+          transform: {
+            translation: [40, 220, -30],
+            rotation: [
+              5.729577951308232, 131.78029288008932, 28.64788975654116,
+            ],
+            scale: [1.6000000000000005, 3.6000000000000005, 1.6000000000000005],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [10, -100, 10],
+            rotation: [0, 28.64788975654116, 0],
+            scale: [1.1, 1.1, 1.1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [160, -120, 10],
+            rotation: [-42.97183463481174, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [200, -60, -60],
+            rotation: [0, -57.29577951308232, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [10, -60, -100],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+      ],
+    },
+    {
+      transform: {
+        translation: [410, -350, 0],
+        rotation: [-34.37746770784939, 34.37746770784939, 63.02535746439057],
+        scale: [1.5, 1.5, 1.5],
+      },
+      children: [
+        {
+          transform: {
+            translation: [30, 350, -30],
+            rotation: [
+              -20.05352282957881, 131.78029288008932, -17.188733853924695,
+            ],
+            scale: [1.6000000000000005, 3.6000000000000005, 1.6000000000000005],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [10, -100, 10],
+            rotation: [0, 28.64788975654116, 0],
+            scale: [1.1, 1.1, 1.1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [160, -120, 10],
+            rotation: [-42.97183463481174, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [200, -60, -60],
+            rotation: [0, -57.29577951308232, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [10, -60, -100],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+      ],
+    },
+    {
+      transform: {
+        translation: [410, -350, 0],
+        rotation: [-34.37746770784939, 34.37746770784939, 63.02535746439057],
+        scale: [1.5, 1.5, 1.5],
+      },
+      children: [
+        {
+          transform: {
+            translation: [30, 350, -30],
+            rotation: [
+              -20.05352282957881, 131.78029288008932, -17.188733853924695,
+            ],
+            scale: [12, 12, 12],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [10, -100, 10],
+            rotation: [0, 28.64788975654116, 0],
+            scale: [1.1, 1.1, 1.1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [160, -120, 10],
+            rotation: [-42.97183463481174, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [200, -60, -60],
+            rotation: [0, -57.29577951308232, 0],
+            scale: [1, 1, 1],
+          },
+          children: [],
+        },
+        {
+          transform: {
+            translation: [10, -60, -100],
             rotation: [0, 0, 0],
             scale: [1, 1, 1],
           },
