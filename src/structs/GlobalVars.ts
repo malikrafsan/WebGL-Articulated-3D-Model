@@ -40,6 +40,10 @@ export class GlobalVars {
     return this._animator;
   }
 
+  public set animator(animator: Animator) {
+    this._animator = animator;
+  }
+
   public get elmtContainer() {
     return this._elmtContainer;
   }

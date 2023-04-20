@@ -1,6 +1,6 @@
 import { COLORS, Vertex, Vector3, IArticulatedModel, TEXTURE, IModelAndAnimation } from "..";
 
-export const MINECRAFT_PEOPLE: IArticulatedModel = {
+export const MINECRAFT_PEOPLE = {
   name: "Root",
   node: {
     vertices: [
@@ -25,7 +25,7 @@ export const MINECRAFT_PEOPLE: IArticulatedModel = {
   transform: {
     translation: [0, 300, 0],
     rotation: [0, 90, 0],
-    scale: [1, 1, 1], // TODO: USE CONFIG
+    scale: [1, 1, 1], 
   },
   children: [
     {
@@ -53,7 +53,7 @@ export const MINECRAFT_PEOPLE: IArticulatedModel = {
       transform: {
         translation: [0, 0, 0],
         rotation: [0, 0, 0],
-        scale: [1, 1, 1], // TODO: USE CONFIG
+        scale: [1, 1, 1],
       },
       children: [
         {
@@ -111,7 +111,7 @@ export const MINECRAFT_PEOPLE: IArticulatedModel = {
           transform: {
             translation: [-120, 20, 30],
             rotation: [0, 0, 0],
-            scale: [1, 1, 1], // TODO: USE CONFIG
+            scale: [1, 1, 1],
           },
           children: [
           ],
@@ -235,7 +235,7 @@ export const MINECRAFT_PEOPLE: IArticulatedModel = {
           transform: {
             translation: [0, 0, 200],
             rotation: [0, 0, 0],
-            scale: [1, 1, 1], // TODO: USE CONFIG
+            scale: [1, 1, 1], 
           },
           children:[
             {
@@ -263,7 +263,7 @@ export const MINECRAFT_PEOPLE: IArticulatedModel = {
               transform: {
                 translation: [0, -100, 0],
                 rotation: [0, 0, 0],
-                scale: [1, 1, 1], // TODO: USE CONFIG
+                scale: [1, 1, 1], 
               },
               children:[],
               texture: TEXTURE.NONE,
@@ -296,7 +296,7 @@ export const MINECRAFT_PEOPLE: IArticulatedModel = {
           transform: {
             translation: [0, 0, -80],
             rotation: [0, 0, 0],
-            scale: [1, 1, 1], // TODO: USE CONFIG
+            scale: [1, 1, 1], 
           },
           children:[
             {
@@ -324,7 +324,7 @@ export const MINECRAFT_PEOPLE: IArticulatedModel = {
               transform: {
                 translation: [0, -100, 10],
                 rotation: [0, 0, 0],
-                scale: [1, 1, 1], // TODO: USE CONFIG
+                scale: [1, 1, 1], 
               },
               children:[],
               texture: TEXTURE.NONE,
@@ -433,7 +433,1602 @@ export const MINECRAFT_PEOPLE: IArticulatedModel = {
 export const MINECRAFT_PEOPLE_ANIM = {
   name: "animator",
   frames: [
-    
+    // 1
+    {
+      // root
+      transform: {
+        translation: [0, 300, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 2
+    {
+      // root
+      transform: {
+        translation: [0, 300, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [0, 10, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, 60],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, -60],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 30],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, -30],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 3
+    {
+      // root
+      transform: {
+        translation: [0, 300, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 4
+    {
+      // root
+      transform: {
+        translation: [0, 300, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [0, -10, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, -60],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, 60],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, -30],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 30],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 5
+    {
+      // root
+      transform: {
+        translation: [0, 300, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 6
+    {
+      // root
+      transform: {
+        translation: [0, 300, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [10, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, 60],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, -60],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 30],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, -30],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 7
+    {
+      // root
+      transform: {
+        translation: [0, 300, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 8
+    {
+      // root
+      transform: {
+        translation: [0, 300, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [-10, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, -60],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, 60],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, -30],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 30],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 9
+    {
+      // root
+      transform: {
+        translation: [0, 300, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 10
+    {
+      // root
+      transform: {
+        translation: [0, 400, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, 180],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, 180],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 11
+    {
+      // root
+      transform: {
+        translation: [0, 300, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
+    // 12
+    {
+      // root
+      transform: {
+        translation: [0, 400, 0],
+        rotation: [0, 90, 0],
+        scale: [1, 1, 1], 
+      },
+      children: [
+        {
+          // head
+          transform: {
+            translation: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          },
+          children : [
+            {
+              // hair
+              transform: {
+                translation: [0, 120, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children : [],
+            }, 
+            {
+              // right-eye
+              transform: {
+                translation: [-120, 20, 30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+              },
+              children : [],
+            },
+            {
+              // left-eye
+              transform: {
+                translation: [-120, 20, -30],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            },
+            {
+              // mouth
+              transform: {
+                translation: [-130, -40, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+            }
+          ]
+        },
+        {
+          // body
+          transform: {
+            translation: [0, -200, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Right-Sleeve
+              transform: {
+                translation: [0, 0, 200],
+                rotation: [0, 0, 180],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Right-Hand
+                  transform: {
+                    translation: [0, -100, 0],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ]
+            },
+            {
+              // Left-Sleeve
+              transform: {
+                translation: [0, 0, -80],
+                rotation: [0, 0, 180],
+                scale: [1, 1, 1], 
+              },
+              children: [
+                {
+                  // Left-Hand
+                  transform: {
+                    translation: [0, -100, 10],
+                    rotation: [0, 0, 0],
+                    scale: [1, 1, 1], 
+                  },
+                  children: [],
+                }
+              ],
+            }
+          ],
+        },
+        {
+          // Feet
+          transform: {
+            translation: [0, -500, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1], 
+          },
+          children: [
+            {
+              // Left-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }, 
+            {
+              // Right-Feet
+              transform: {
+                translation: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], 
+              },
+              children: [],
+            }
+          ]
+        }
+      ]
+    },
   ],
 };
 

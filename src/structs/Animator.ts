@@ -18,6 +18,10 @@ export class Animator {
     this._elmtContainer = elmtContainer;
   }
 
+  public setAnimation(animation: IAnimation) {
+    this._animation = animation;
+  }
+
   public setModel(model: ArticulatedModel) {
     this._model = model;
   }
@@ -35,6 +39,7 @@ export class Animator {
   }
 
   public start() {
+    console.log(this._animation);
     this.stop();
     this.resume();
   }
