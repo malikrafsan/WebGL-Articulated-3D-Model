@@ -100,6 +100,10 @@ export class ArticulatedModel {
     return this._transform;
   }
 
+  public set transform(transform: Transform) {
+    this._transform = transform;
+  }
+
   public get children(): ArticulatedModel[] {
     return this._children;
   }

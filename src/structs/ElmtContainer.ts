@@ -372,7 +372,6 @@ export class ElmtContainer {
     btn.id = id;
     const div = document.createElement("div");
     btn.className = "ml-" + depth*4 + " mt-2 w-1/3 flex flex-col items-center py-1 bg-purple-600 border border-slate-900/10 text-xs font-bold rounded-lg active:bg-violet-500";
-    console.log(btn.className);
     btn.innerHTML = id;
     btn.onclick = (event: Event) => {
       callbackOnClick();

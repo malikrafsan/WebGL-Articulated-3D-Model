@@ -4,7 +4,7 @@ import { ArticulatedModel } from "./ArticulatedModel";
 
 export class Animator {
   public static readonly TIME_INTERVAL = 1000;
-  private readonly _animation: IAnimation;
+  private _animation: IAnimation;
   private _idxCurAnimation: number = 0;
   private _interval: NodeJS.Timer;
   private _callback: (idx: number) => void = () => {};
@@ -14,11 +14,16 @@ export class Animator {
     this._animation = animation;
   }
 
+  public setAnimation(animation: IAnimation) {
+    this._animation = animation;
+  }
+
   public setModel(model: ArticulatedModel) {
     this._model = model;
   }
 
   public start() {
+    console.log(this._animation);
     this.stop();
     this.resume();
   }

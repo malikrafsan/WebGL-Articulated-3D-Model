@@ -7,7 +7,7 @@ import { ArticulatedModel } from ".";
 import { GlobalVars } from "./GlobalVars";
 import { TreeUtils } from "../utils/TreeUtils";
 import { ExtendedMath } from "../utils";
-import { CUBES, MINECRAFT_PEOPLE, MINECRAFT_PEOPLE_ANIM } from "../models";
+import { CUBES, CUBES_ANIM, MINECRAFT_PEOPLE, MINECRAFT_PEOPLE_ANIM } from "../models";
 
 export function addElmtListener(globalVars: GlobalVars) {
     // const animator = globalVars.animator;
@@ -63,16 +63,23 @@ export function addElmtListener(globalVars: GlobalVars) {
     globalVars.elmtContainer.selectModel.addEventListener("change", () => {
       TreeUtils.resetTree(globalVars.elmtContainer);
       let articulatedModel: ArticulatedModel;
+      let animator: Animator;
       if (globalVars.elmtContainer.selectModel.value == "MINECRAFT_PEOPLE") {
         articulatedModel = new ArticulatedModel(globalVars.contextGL, MINECRAFT_PEOPLE);
+        animator = new Animator(MINECRAFT_PEOPLE_ANIM);
       } else if (globalVars.elmtContainer.selectModel.value == "model1") {
         articulatedModel = new ArticulatedModel(globalVars.contextGL, CUBES);
+        animator = new Animator(CUBES_ANIM);
       } else {
         articulatedModel = new ArticulatedModel(globalVars.contextGL, CUBES);
+        animator = new Animator(CUBES_ANIM);
       }
       globalVars.model = new ArticulatedModel(globalVars.contextGL, articulatedModel);
       const tree = TreeUtils.mapperTree(globalVars.model);
+      globalVars.animator = animator;
+      globalVars.animator.setModel(articulatedModel);
       globalVars.tree = tree;
+      globalVars.tree.ref.transform = articulatedModel.transform;
       TreeUtils.mapTreeToComponentTree(globalVars.elmtContainer, tree, globalVars);
       refreshModel(
         globalVars.elmtContainer,
