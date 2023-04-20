@@ -91,6 +91,9 @@ export function addElmtListener(globalVars: GlobalVars) {
     globalVars.elmtContainer.buttonTextureReflective.addEventListener("click", () => {
         globalVars.tree.ref.setTexture(TEXTURE.REFLECTION);
     });
+    globalVars.elmtContainer.buttonTextureNone.addEventListener("click", () => {
+      globalVars.tree.ref.setTexture(TEXTURE.NONE);
+  });
   
     // TRANSLATION
     globalVars.elmtContainer.buttonTranslateLeft.addEventListener(
