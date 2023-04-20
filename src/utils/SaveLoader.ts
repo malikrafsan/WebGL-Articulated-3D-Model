@@ -27,7 +27,6 @@ export class SaveLoader {
     };
     reader.readAsText(file);
 
-
     // const json: IRawArticulatedModel = JSON.parse(file);
     // const iModel = this.convertFromRaw(json);
 

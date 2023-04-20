@@ -46,7 +46,6 @@ const main = async () => {
   const articulatedModel = new ArticulatedModel(contextGL, CUBES);
   const renderer = new Renderer(contextGL);
 
-
   const t2 = TreeUtils.mapperTree(articulatedModel);
 
   const selectedTree = t2;

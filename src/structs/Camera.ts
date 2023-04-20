@@ -19,7 +19,7 @@ export class Camera {
     this._radius = 500;
     this._lookAt = this.recalcLookAt();
   }
-  
+
   public setangleX(angleX: number) {
     this._angleX = angleX;
     this._lookAt = this.recalcLookAt();

@@ -1,4 +1,13 @@
-import { Vertex, AXIS, TEXTURE, PROJECTION, ContextGL, ElmtContainer, Renderer, ArticulatedModel } from "..";
+import {
+  Vertex,
+  AXIS,
+  TEXTURE,
+  PROJECTION,
+  ContextGL,
+  ElmtContainer,
+  Renderer,
+  ArticulatedModel,
+} from "..";
 import { Animator } from "../structs/Animator";
 
 export type AXIS_KEYS = keyof typeof AXIS;

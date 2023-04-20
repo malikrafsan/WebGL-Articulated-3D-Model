@@ -1,4 +1,5 @@
 # IF3260_Tugas3_K02_G06
+
 # 3D WebGL Articulated Object
 
 Sebuah aplikasi berbasis website yang menampilkan 3D WebGL Articulated Object. Aplikasi ini menggunakan WebGL Murni, tanpa library/framework WebGL tambahan. Aplikasi ini dikembangkan menggunakan bahasa TypeScripts dan di-serve menggunakan http-server.
@@ -16,8 +17,8 @@ Sebuah aplikasi berbasis website yang menampilkan 3D WebGL Articulated Object. A
 2. Install npm
 3. Clone repository ini
 4. Run
-    ```
-    $ npm install
-    $ npm run dev
-    ```
+   ```
+   $ npm install
+   $ npm run dev
+   ```
 5. Buka `http://localhost:8080` di browser

@@ -78,7 +78,9 @@ export class ArticulatedModel {
 
   public setFrame(frame: IFrame, elmtContainer: ElmtContainer) {
     if (this._children.length != frame.children.length) {
-      elmtContainer.showWarningToast("Frame does not match with model T_T. Trying my best to adjust ^_^");
+      elmtContainer.showWarningToast(
+        "Frame does not match with model T_T. Trying my best to adjust ^_^"
+      );
     }
 
     for (let i = 0; i < this._children.length; i++) {
@@ -388,15 +390,12 @@ export class ArticulatedModel {
 
     gl.uniform3fv(
       this._locationGL.reverseLightDirection,
-      CONFIG_RENDERER.REVERSE_LIGHT_DIRECTION,
+      CONFIG_RENDERER.REVERSE_LIGHT_DIRECTION
     );
-    gl.uniform3fv(
-      this._locationGL.ambientLight,
-      CONFIG_RENDERER.AMBIENT_LIGHT,
-    );
+    gl.uniform3fv(this._locationGL.ambientLight, CONFIG_RENDERER.AMBIENT_LIGHT);
     gl.uniform1f(
       this._locationGL.albedoMultiplier,
-      CONFIG_RENDERER.ALBEDO_MULTIPLIER,
+      CONFIG_RENDERER.ALBEDO_MULTIPLIER
     );
 
     const viewModelMat = Matrix4.multiply(props.viewMat, props.modelMat);

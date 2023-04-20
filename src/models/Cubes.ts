@@ -1,4 +1,11 @@
-import { COLORS, Vertex, Vector3, IArticulatedModel, TEXTURE, IModelAndAnimation } from "..";
+import {
+  COLORS,
+  Vertex,
+  Vector3,
+  IArticulatedModel,
+  TEXTURE,
+  IModelAndAnimation,
+} from "..";
 
 export const CUBES: IArticulatedModel = {
   name: "Cubes",
@@ -378,4 +385,3 @@ export const CUBES_ANIM = {
     },
   ],
 };
-

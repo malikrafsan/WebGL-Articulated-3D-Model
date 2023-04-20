@@ -21,13 +21,10 @@ export class Vertex {
     return {
       position: this._position.toArray(),
       color: this._color.toArray(),
-    }
+    };
   }
 
-  public static fromArray(array: {
-    position: number[],
-    color: number[],
-  }) {
+  public static fromArray(array: { position: number[]; color: number[] }) {
     return new Vertex(
       Vector3.fromArray(array.position),
       Color.fromArray(array.color)

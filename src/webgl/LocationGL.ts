@@ -109,7 +109,7 @@ export class LocationGL {
       !textureImage ||
       !textureEnvironment ||
       !textureBump ||
-      !ambientLight || 
+      !ambientLight ||
       !albedoMultiplier
     ) {
       throw new Error("Could not find uniform variable");

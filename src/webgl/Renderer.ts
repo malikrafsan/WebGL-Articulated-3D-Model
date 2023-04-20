@@ -117,12 +117,12 @@ export class Renderer {
     const projectionMat = this._projectionMatrix.clone();
     const lookAtMat = this._camera.lookAt;
     const viewMat = lookAtMat.clone().inverse();
-    const modelMat = new MatTransform()
+    const modelMat =
       // .rotateY(Math.PI / 5)
       // .scale(0.5, 0.5, 0.5)
       // .rotateX(Math.PI / 4)
       // .rotateZ(Math.PI)
-      .mat;
+      new MatTransform().mat;
 
     articulatedModel.draw({
       pMat: projectionMat,
