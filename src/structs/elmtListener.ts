@@ -304,7 +304,12 @@ export function addElmtListener(globalVars: GlobalVars) {
   }
 
   // MODAL
-  globalVars.elmtContainer.helpBtn.addEventListener("click", () => {});
+  globalVars.elmtContainer.helpBtn.addEventListener("click", () => {
+    globalVars.elmtContainer.modalContainer.style.display = "block";
+  });
+  globalVars.elmtContainer.modalBackdrop.addEventListener("click", () => {
+    globalVars.elmtContainer.modalContainer.style.display = "none";
+  });
 
   console.log("addElmtListener");
 }

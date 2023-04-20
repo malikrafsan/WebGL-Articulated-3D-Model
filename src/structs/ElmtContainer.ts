@@ -52,6 +52,8 @@ export class ElmtContainer {
   public readonly durationInput: HTMLInputElement;
   public readonly btnSetDuration: HTMLButtonElement;
   public readonly reverseAnimation: HTMLButtonElement;
+  public readonly modalContainer: HTMLDivElement;
+  public readonly modalBackdrop: HTMLDivElement;
 
   // public readonly modalContainer: HTMLDivElement;
   // public readonly modalBackdrop: HTMLDivElement;
@@ -152,6 +154,9 @@ export class ElmtContainer {
     const durationInput = document.getElementById("duration");
     const btnSetDuration = document.getElementById("set-duration");
     const reverseAnimation = document.getElementById("reverse-animation");
+
+    const modalContainer = document.getElementById("modal-container");
+    const modalBackdrop = document.getElementById("modal-backdrop");
 
     // const modalContainer = document.getElementById("modal-container");
     // const modalBackdrop = document.getElementById("modal-backdrop");
@@ -313,6 +318,12 @@ export class ElmtContainer {
     if (!(reverseAnimation instanceof HTMLButtonElement)) {
       throw new Error("Button animation loop not found");
     }
+    if (!(modalContainer instanceof HTMLDivElement)) {
+      throw new Error("Modal container not found");
+    }
+    if (!(modalBackdrop instanceof HTMLDivElement)) {
+      throw new Error("Modal backdrop not found");
+    }
 
     // if (!(modalContainer instanceof HTMLDivElement)) {
     //   throw new Error("Modal container not found");
@@ -376,6 +387,8 @@ export class ElmtContainer {
     this.durationInput = durationInput;
     this.btnSetDuration = btnSetDuration;
     this.reverseAnimation = reverseAnimation;
+    this.modalContainer = modalContainer;
+    this.modalBackdrop = modalBackdrop;
 
     // this.modalContainer = modalContainer;
     // this.modalBackdrop = modalBackdrop;
