@@ -94,7 +94,7 @@ export function addElmtListener(globalVars: GlobalVars) {
     // globalVars.animator = animator;
     globalVars.animator.setModel(globalVars.model); //articulatedModel);
     globalVars.tree = tree;
-    globalVars.tree.ref.transform = globalVars.model.transform;
+    globalVars.tree.ref = globalVars.model;
     TreeUtils.mapTreeToComponentTree(
       globalVars.elmtContainer,
       tree,
@@ -106,19 +106,19 @@ export function addElmtListener(globalVars: GlobalVars) {
 
   // CHANGE TEXTURE
   globalVars.elmtContainer.buttonTextureBump.addEventListener("click", () => {
-    globalVars.tree.ref.setTexture(TEXTURE.BUMP);
+    globalVars.tree.ref.setTexture(TEXTURE.BUMP, globalVars);
   });
   globalVars.elmtContainer.buttonTextureImage.addEventListener("click", () => {
-    globalVars.tree.ref.setTexture(TEXTURE.IMAGE);
+    globalVars.tree.ref.setTexture(TEXTURE.IMAGE, globalVars);
   });
   globalVars.elmtContainer.buttonTextureReflective.addEventListener(
     "click",
     () => {
-      globalVars.tree.ref.setTexture(TEXTURE.REFLECTION);
+      globalVars.tree.ref.setTexture(TEXTURE.REFLECTION, globalVars);
     }
   );
   globalVars.elmtContainer.buttonTextureNone.addEventListener("click", () => {
-    globalVars.tree.ref.setTexture(TEXTURE.NONE);
+    globalVars.tree.ref.setTexture(TEXTURE.NONE, globalVars);
   });
   globalVars.elmtContainer.swapWithNextFrame.onclick = () => {
     globalVars.animator.swapWithNextFrame();
@@ -135,25 +135,29 @@ export function addElmtListener(globalVars: GlobalVars) {
 
   // TRANSLATION
   globalVars.elmtContainer.buttonTranslateLeft.addEventListener("click", () => {
-    globalVars.tree.ref.transform.translation[0] -= 5;
+    globalVars.tree.ref.translate(-10, 0, true, globalVars);
   });
   globalVars.elmtContainer.buttonTranslateRight.addEventListener(
     "click",
     () => {
-      globalVars.tree.ref.transform.translation[0] += 5;
+      globalVars.tree.ref.translate(10, 0, true, globalVars);
     }
   );
   globalVars.elmtContainer.buttonTranslateUp.addEventListener("click", () => {
-    globalVars.tree.ref.transform.translation[1] += 5;
+    // globalVars.tree.ref.transform.translation[1] += 5;
+    globalVars.tree.ref.translate(10, 1, true, globalVars);
   });
   globalVars.elmtContainer.buttonTranslateDown.addEventListener("click", () => {
-    globalVars.tree.ref.transform.translation[1] -= 5;
+    // globalVars.tree.ref.transform.translation[1] -= 5;
+    globalVars.tree.ref.translate(-10, 1, true, globalVars);
   });
   globalVars.elmtContainer.buttonTranslateIn.addEventListener("click", () => {
-    globalVars.tree.ref.transform.translation[2] -= 5;
+    // globalVars.tree.ref.transform.translation[2] -= 5;
+    globalVars.tree.ref.translate(-10, 2, true, globalVars);
   });
   globalVars.elmtContainer.buttonTranslateOut.addEventListener("click", () => {
-    globalVars.tree.ref.transform.translation[2] += 5;
+    // globalVars.tree.ref.transform.translation[2] += 5;
+    globalVars.tree.ref.translate(10, 2, true, globalVars);
   });
 
   // SCALING
@@ -161,34 +165,35 @@ export function addElmtListener(globalVars: GlobalVars) {
     // do nothing
   });
   globalVars.elmtContainer.scaleButton.addEventListener("click", () => {
+    const newValue = globalVars.elmtContainer.scaleFactor.valueAsNumber;
+
     for (let index = 0; index < 3; index++) {
-      globalVars.tree.ref.transform.scale[index] =
-        globalVars.elmtContainer.scaleFactor.valueAsNumber;
+      globalVars.tree.ref.scale(newValue, index, false, globalVars);
     }
   });
   globalVars.elmtContainer.buttonEnlarge.addEventListener("click", () => {
     for (let index = 0; index < 3; index++) {
-      globalVars.tree.ref.transform.scale[index] += 0.1;
+      globalVars.tree.ref.scale(0.1, index, true, globalVars);
     }
   });
   globalVars.elmtContainer.buttonShrink.addEventListener("click", () => {
     for (let index = 0; index < 3; index++) {
-      globalVars.tree.ref.transform.scale[index] -= 0.1;
+      globalVars.tree.ref.scale(-0.1, index, true, globalVars);
     }
   });
 
   // ROTATION
   globalVars.elmtContainer.rotateXObject.addEventListener("input", () => {
-    globalVars.tree.ref.transform.rotation[0] =
-      globalVars.elmtContainer.rotateXObject.valueAsNumber;
+    const angle = globalVars.elmtContainer.rotateXObject.valueAsNumber;
+    globalVars.tree.ref.rotate(angle, 0, globalVars);
   });
   globalVars.elmtContainer.rotateYObject.addEventListener("input", () => {
-    globalVars.tree.ref.transform.rotation[1] =
-      globalVars.elmtContainer.rotateYObject.valueAsNumber;
+    const angle = globalVars.elmtContainer.rotateYObject.valueAsNumber;
+    globalVars.tree.ref.rotate(angle, 1, globalVars);
   });
   globalVars.elmtContainer.rotateZObject.addEventListener("input", () => {
-    globalVars.tree.ref.transform.rotation[2] =
-      globalVars.elmtContainer.rotateZObject.valueAsNumber;
+    const angle = globalVars.elmtContainer.rotateZObject.valueAsNumber;
+    globalVars.tree.ref.rotate(angle, 2, globalVars);
   });
 
   // CAMERA
@@ -232,8 +237,6 @@ export function addElmtListener(globalVars: GlobalVars) {
   });
   // RESET
   globalVars.elmtContainer.buttonReset.addEventListener("click", () => {
-    console.log(globalVars.model.transform);
-    console.log(globalVars.default.transform);
     globalVars.model.resetTransform(globalVars.default);
     refreshModel(globalVars.elmtContainer, globalVars);
   });

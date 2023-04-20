@@ -127,11 +127,52 @@ export class ArticulatedModel {
     return this._texture;
   }
 
-  public setTexture(texture: TEXTURE_VALUES) {
+  public setTexture(texture: TEXTURE_VALUES, globalVars: GlobalVars) {
     this._texture = texture;
-    // for(let i=0; i<this.children.length; i++){
-    //     this.children[i].setTexture(texture);
-    // }
+
+    if (globalVars.elmtContainer.subtreeToggle.checked) {
+      for (let i = 0; i < this.children.length; i++) {
+        this.children[i].setTexture(texture, globalVars);
+      }
+    }
+  }
+
+  public translate(value: number, axis: number, asIncrement: boolean, globalVars: GlobalVars) {
+    if (asIncrement) {
+      this._transform.translation[axis] += value;
+    } else {
+      this._transform.translation[axis] = value;
+    }
+
+    if (globalVars.elmtContainer.subtreeToggle.checked) {
+      for (let i = 0; i < this.children.length; i++) {
+        this.children[i].translate(value, axis, asIncrement, globalVars);
+      }
+    }
+  }
+
+  public rotate(angle: number, axis: number, globalVars: GlobalVars) {
+    this._transform.rotation[axis] = angle;
+
+    if (globalVars.elmtContainer.subtreeToggle.checked) {
+      for (let i = 0; i < this.children.length; i++) {
+        this.children[i].rotate(angle, axis, globalVars);
+      }
+    }
+  }
+
+  public scale(newValue: number, axis: number, asIncrement: boolean, globalVars: GlobalVars) {
+    if (asIncrement) {
+      this._transform.scale[axis] += newValue;
+    } else {
+      this._transform.scale[axis] = newValue;
+    }
+
+    if (globalVars.elmtContainer.subtreeToggle.checked) {
+      for (let i = 0; i < this.children.length; i++) {
+        this.children[i].scale(newValue, axis, asIncrement, globalVars);
+      }
+    }
   }
 
   public draw(props: {

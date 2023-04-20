@@ -45,6 +45,7 @@ export class ElmtContainer {
   public readonly saveAnimation: HTMLButtonElement;
   public readonly swapWithNextFrame: HTMLButtonElement;
   public readonly setAnimation: HTMLInputElement;
+  public readonly subtreeToggle: HTMLInputElement;
 
   // public readonly modalContainer: HTMLDivElement;
   // public readonly modalBackdrop: HTMLDivElement;
@@ -136,6 +137,7 @@ export class ElmtContainer {
 
     const swapWithNextFrame = document.getElementById("swap-with-next-frame");
     const setAnimation = document.getElementById("set-animation");
+    const subtreeToggle = document.getElementById("subtree-toggle");
 
     // const modalContainer = document.getElementById("modal-container");
     // const modalBackdrop = document.getElementById("modal-backdrop");
@@ -276,6 +278,9 @@ export class ElmtContainer {
     if (!(setAnimation instanceof HTMLInputElement)) {
       throw new Error("Set animation not found");
     }
+    if (!(subtreeToggle instanceof HTMLInputElement)) {
+      throw new Error("Subtree toggle not found");
+    }
 
     // if (!(modalContainer instanceof HTMLDivElement)) {
     //   throw new Error("Modal container not found");
@@ -332,6 +337,7 @@ export class ElmtContainer {
     this.saveAnimation = saveAnimation;
     this.swapWithNextFrame = swapWithNextFrame;
     this.setAnimation = setAnimation;
+    this.subtreeToggle = subtreeToggle;
     // this.modalContainer = modalContainer;
     // this.modalBackdrop = modalBackdrop;
     // this.modalBody = modalBody;
