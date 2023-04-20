@@ -205,6 +205,18 @@ export function addElmtListener(globalVars: GlobalVars) {
     const angle = globalVars.elmtContainer.rotateZObject.valueAsNumber;
     globalVars.tree.ref.rotate(angle, 2, globalVars);
   });
+  globalVars.elmtContainer.scaleXObject.addEventListener("input", () => {
+    const val = globalVars.elmtContainer.scaleXObject.valueAsNumber;
+    globalVars.tree.ref.scale(val, 0, false, globalVars);
+  });
+  globalVars.elmtContainer.scaleYObject.addEventListener("input", () => {
+    const val = globalVars.elmtContainer.scaleYObject.valueAsNumber;
+    globalVars.tree.ref.scale(val, 1, false, globalVars);
+  });
+  globalVars.elmtContainer.scaleZObject.addEventListener("input", () => {
+    const val = globalVars.elmtContainer.scaleZObject.valueAsNumber;
+    globalVars.tree.ref.scale(val, 2, false, globalVars);
+  });
 
   // CAMERA
   globalVars.elmtContainer.buttonZoomIn.addEventListener("click", () => {
@@ -306,6 +318,12 @@ export function refreshModel(
     globalVars.tree.ref.transform.rotation[1].toString();
   elmtContainer.rotateZObject.value =
     globalVars.tree.ref.transform.rotation[2].toString();
+  elmtContainer.scaleXObject.value =
+    globalVars.tree.ref.transform.scale[0].toString();
+  elmtContainer.scaleYObject.value =
+    globalVars.tree.ref.transform.scale[1].toString();
+  elmtContainer.scaleZObject.value =
+    globalVars.tree.ref.transform.scale[2].toString();
 }
 
 export const refreshRendererControl = (

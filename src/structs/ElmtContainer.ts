@@ -5,6 +5,9 @@ export class ElmtContainer {
   public readonly rotateXObject: HTMLInputElement;
   public readonly rotateYObject: HTMLInputElement;
   public readonly rotateZObject: HTMLInputElement;
+  public readonly scaleXObject: HTMLInputElement;
+  public readonly scaleYObject: HTMLInputElement;
+  public readonly scaleZObject: HTMLInputElement;
   public readonly buttonTranslateLeft: HTMLButtonElement;
   public readonly buttonTranslateRight: HTMLButtonElement;
   public readonly buttonTranslateUp: HTMLButtonElement;
@@ -66,6 +69,10 @@ export class ElmtContainer {
     const rotateXObject = document.getElementById("rotateX");
     const rotateYObject = document.getElementById("rotateY");
     const rotateZObject = document.getElementById("rotateZ");
+
+    const scaleXObject = document.getElementById("scaleX");
+    const scaleYObject = document.getElementById("scaleY");
+    const scaleZObject = document.getElementById("scaleZ");
 
     const buttonTranslateLeft = document.getElementById(
       "button-translate-left"
@@ -164,6 +171,15 @@ export class ElmtContainer {
     }
     if (!(rotateZObject instanceof HTMLInputElement)) {
       throw new Error("Rotate Z not found");
+    }
+    if (!(scaleXObject instanceof HTMLInputElement)) {
+      throw new Error("scale X not found");
+    }
+    if (!(scaleYObject instanceof HTMLInputElement)) {
+      throw new Error("scale Y not found");
+    }
+    if (!(scaleZObject instanceof HTMLInputElement)) {
+      throw new Error("scale Z not found");
     }
     if (!(buttonTranslateLeft instanceof HTMLButtonElement)) {
       throw new Error("Button translate left not found");
@@ -313,6 +329,9 @@ export class ElmtContainer {
     this.rotateXObject = rotateXObject;
     this.rotateYObject = rotateYObject;
     this.rotateZObject = rotateZObject;
+    this.scaleXObject = scaleXObject;
+    this.scaleYObject = scaleYObject;
+    this.scaleZObject = scaleZObject;
     this.buttonTranslateLeft = buttonTranslateLeft;
     this.buttonTranslateRight = buttonTranslateRight;
     this.buttonTranslateUp = buttonTranslateUp;
