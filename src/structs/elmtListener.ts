@@ -274,6 +274,14 @@ export function addElmtListener(globalVars: GlobalVars) {
     globalVars.elmtContainer.loadInput.value = "";
   });
 
+  globalVars.elmtContainer.btnSetDuration.onclick = () => {
+    const duration = globalVars.elmtContainer.durationInput.valueAsNumber;
+    globalVars.animator.setDuration(duration);
+  }
+  globalVars.elmtContainer.reverseAnimation.onclick = () => {
+    globalVars.animator.reverseAnimation();
+  }
+
   // MODAL
   globalVars.elmtContainer.helpBtn.addEventListener("click", () => {});
 

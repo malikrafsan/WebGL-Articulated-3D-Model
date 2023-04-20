@@ -5,7 +5,7 @@ import { ElmtContainer } from "./ElmtContainer";
 import { GlobalVars } from "./GlobalVars";
 
 export class Animator {
-  public static readonly TIME_INTERVAL = 1000;
+  private TIME_INTERVAL = 1000;
   private _animation: IAnimation;
   private _idxCurAnimation: number = 0;
   private _interval: NodeJS.Timer;
@@ -91,7 +91,19 @@ export class Animator {
 
       this.idxCurAnimation = this.idxCurAnimation + 1;
       // TODO: if
-    }, Animator.TIME_INTERVAL);
+    }, this.TIME_INTERVAL);
+  }
+
+  public setDuration(duration: number) {
+    this.TIME_INTERVAL = duration;
+    // this.stop();
+    // this.resume();
+  }
+
+  public reverseAnimation() {
+    this._animation.frames.reverse();
+    // this.stop();
+    // this.resume();
   }
 
   public prev() {
