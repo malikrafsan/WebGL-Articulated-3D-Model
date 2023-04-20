@@ -12,6 +12,7 @@ import {
   CUBES_ANIM,
   MINECRAFT_PEOPLE,
   MINECRAFT_PEOPLE_ANIM,
+  DOG,
 } from "../models";
 
 export function addElmtListener(globalVars: GlobalVars) {
@@ -80,6 +81,17 @@ export function addElmtListener(globalVars: GlobalVars) {
       );
       globalVars.animator.setAnimation(MINECRAFT_PEOPLE_ANIM);
       // animator = new Animator(MINECRAFT_PEOPLE_ANIM);
+    } else if (globalVars.elmtContainer.selectModel.value == "DOG") {
+      globalVars.model = new ArticulatedModel(
+        globalVars.contextGL,
+        DOG
+      );
+      globalVars.default = new ArticulatedModel(
+        globalVars.contextGL,
+        DOG
+      );
+      // globalVars.animator.setAnimation(MINECRAFT_PEOPLE_ANIM);
+      // // animator = new Animator(MINECRAFT_PEOPLE_ANIM);
     } else if (globalVars.elmtContainer.selectModel.value == "model1") {
       globalVars.model = new ArticulatedModel(globalVars.contextGL, CUBES);
       globalVars.default = new ArticulatedModel(globalVars.contextGL, CUBES);
