@@ -13,7 +13,9 @@ import {
   ITransform,
   IFrame,
   CONFIG_RENDERER,
+  ElmtContainer,
 } from "..";
+import { GlobalVars } from "./GlobalVars";
 
 export class ArticulatedModel {
   private _contextGL: ContextGL;
@@ -74,13 +76,14 @@ export class ArticulatedModel {
     };
   }
 
-  public setFrame(frame: IFrame) {
+  public setFrame(frame: IFrame, elmtContainer: ElmtContainer) {
     if (this._children.length != frame.children.length) {
-      throw new Error("Error: frame children length does not match");
+      elmtContainer.showWarningToast("Frame does not match with model T_T. Trying my best to adjust ^_^");
     }
 
     for (let i = 0; i < this._children.length; i++) {
-      this._children[i].setFrame(frame.children[i]);
+      if (i >= frame.children.length) break;
+      this._children[i].setFrame(frame.children[i], elmtContainer);
     }
     this.setTransform(frame.transform);
   }
@@ -111,9 +114,9 @@ export class ArticulatedModel {
 
   public setTexture(texture: TEXTURE_VALUES) {
     this._texture = texture;
-    for(let i=0; i<this.children.length; i++){
-        this.children[i].setTexture(texture);
-    }
+    // for(let i=0; i<this.children.length; i++){
+    //     this.children[i].setTexture(texture);
+    // }
   }
 
   public draw(props: {

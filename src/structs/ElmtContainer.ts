@@ -30,7 +30,7 @@ export class ElmtContainer {
   public readonly buttonAnimationPrev: HTMLButtonElement;
   public readonly buttonAnimationNext: HTMLButtonElement;
   public readonly buttonTextureBump: HTMLButtonElement;
-  public readonly buttonTextureEnvironment: HTMLButtonElement;
+  public readonly buttonTextureImage: HTMLButtonElement;
   public readonly buttonTextureReflective: HTMLButtonElement;
   public readonly buttonTextureNone: HTMLButtonElement;
   public readonly activeComponent: HTMLElement;
@@ -43,11 +43,12 @@ export class ElmtContainer {
   public readonly insertAsNextFrame: HTMLElement;
   public readonly uploadFrame: HTMLInputElement;
   public readonly saveAnimation: HTMLButtonElement;
+  public readonly swapWithNextFrame: HTMLButtonElement;
+  public readonly setAnimation: HTMLInputElement;
 
   // public readonly modalContainer: HTMLDivElement;
   // public readonly modalBackdrop: HTMLDivElement;
   // public readonly modalBody: HTMLDivElement;
-
 
   constructor() {
     const canvas = document.querySelector("#canvas");
@@ -95,9 +96,15 @@ export class ElmtContainer {
     );
     const buttonProjOblique = document.getElementById("button-proj-oblique");
 
-    const buttonAnimationPlay = document.getElementById("button-animation-play");
-    const buttonAnimationPause = document.getElementById("button-animation-pause");
-    const buttonAnimationStop = document.getElementById("button-animation-stop");
+    const buttonAnimationPlay = document.getElementById(
+      "button-animation-play"
+    );
+    const buttonAnimationPause = document.getElementById(
+      "button-animation-pause"
+    );
+    const buttonAnimationStop = document.getElementById(
+      "button-animation-stop"
+    );
     const buttonAnimationPrev = document.getElementById(
       "button-animation-prev"
     );
@@ -107,8 +114,12 @@ export class ElmtContainer {
     const idxFrame = document.getElementById("idx-frame");
 
     const buttonTextureBump = document.getElementById("button-texture-bump");
-    const buttonTextureEnvironment = document.getElementById("button-texture-environment");
-    const buttonTextureReflective = document.getElementById("button-texture-reflective");
+    const buttonTextureImage = document.getElementById(
+      "button-texture-environment"
+    );
+    const buttonTextureReflective = document.getElementById(
+      "button-texture-reflective"
+    );
     const buttonTextureNone = document.getElementById("button-texture-none");
 
     const activeComponent = document.getElementById("active-component");
@@ -122,6 +133,9 @@ export class ElmtContainer {
     const insertAsNextFrame = document.getElementById("insert-as-next-frame");
     const uploadFrame = document.getElementById("uploadframe");
     const saveAnimation = document.getElementById("save-animation");
+
+    const swapWithNextFrame = document.getElementById("swap-with-next-frame");
+    const setAnimation = document.getElementById("set-animation");
 
     // const modalContainer = document.getElementById("modal-container");
     // const modalBackdrop = document.getElementById("modal-backdrop");
@@ -211,8 +225,8 @@ export class ElmtContainer {
     if (!(buttonTextureBump instanceof HTMLButtonElement)) {
       throw new Error("buttonTextureBump not found");
     }
-    if (!(buttonTextureEnvironment instanceof HTMLButtonElement)) {
-      throw new Error("buttonTextureEnvironment not found");
+    if (!(buttonTextureImage instanceof HTMLButtonElement)) {
+      throw new Error("buttonTextureImage not found");
     }
     if (!(buttonTextureReflective instanceof HTMLButtonElement)) {
       throw new Error("buttonTextureReflective not found");
@@ -256,6 +270,12 @@ export class ElmtContainer {
     if (!(saveAnimation instanceof HTMLButtonElement)) {
       throw new Error("Save animation not found");
     }
+    if (!(swapWithNextFrame instanceof HTMLButtonElement)) {
+      throw new Error("Swap with next frame not found");
+    }
+    if (!(setAnimation instanceof HTMLInputElement)) {
+      throw new Error("Set animation not found");
+    }
 
     // if (!(modalContainer instanceof HTMLDivElement)) {
     //   throw new Error("Modal container not found");
@@ -298,7 +318,7 @@ export class ElmtContainer {
     this.buttonAnimationNext = buttonAnimationNext;
     this.idxFrame = idxFrame;
     this.buttonTextureBump = buttonTextureBump;
-    this.buttonTextureEnvironment = buttonTextureEnvironment;
+    this.buttonTextureImage = buttonTextureImage;
     this.buttonTextureReflective = buttonTextureReflective;
     this.buttonTextureNone = buttonTextureNone;
     this.activeComponent = activeComponent;
@@ -310,6 +330,8 @@ export class ElmtContainer {
     this.insertAsNextFrame = insertAsNextFrame;
     this.uploadFrame = uploadFrame;
     this.saveAnimation = saveAnimation;
+    this.swapWithNextFrame = swapWithNextFrame;
+    this.setAnimation = setAnimation;
     // this.modalContainer = modalContainer;
     // this.modalBackdrop = modalBackdrop;
     // this.modalBody = modalBody;
@@ -371,14 +393,17 @@ export class ElmtContainer {
     const btn = document.createElement("button");
     btn.id = id;
     const div = document.createElement("div");
-    btn.className = "ml-" + depth*4 + " mt-2 w-1/3 flex flex-col items-center py-1 bg-purple-600 border border-slate-900/10 text-xs font-bold rounded-lg active:bg-violet-500";
+    btn.className =
+      "ml-" +
+      depth * 4 +
+      " mt-2 w-1/3 flex flex-col items-center py-1 bg-purple-600 border border-slate-900/10 text-xs font-bold rounded-lg active:bg-violet-500";
     console.log(btn.className);
     btn.innerHTML = id;
     btn.onclick = (event: Event) => {
       callbackOnClick();
-    }
+    };
     return btn;
-  };
+  }
 
   public createSlider(props: {
     id: string;
@@ -406,5 +431,41 @@ export class ElmtContainer {
     div.appendChild(slider);
 
     return div;
+  }
+
+  public showWarningToast(msg: string) {
+    const id = Math.random().toString(36).substring(7);
+    const fullId = `toast-warning-${id}`;
+
+    const template = `
+<div id="${fullId}" class="fixed top-16 right-16 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
+        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+        <span class="sr-only">Warning icon</span>
+    </div>
+    <div class="ml-3 text-sm font-normal">${msg}</div>
+    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-warning" aria-label="Close">
+        <span class="sr-only">Close</span>
+        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    </button>
+</div>
+    `;
+    const div = document.createElement("div");
+    div.innerHTML = template;
+
+    const body = document.querySelector("body");
+    if (!body) {
+      throw new Error("No body found");
+    }
+
+    body.appendChild(div);
+
+    setTimeout(() => {
+      const elmt = document.querySelector(`#${fullId}`);
+      if (!elmt) {
+        throw new Error("No element found");
+      }
+      elmt.remove();
+    }, 3000);
   }
 }

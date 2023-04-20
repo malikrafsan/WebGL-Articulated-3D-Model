@@ -85,7 +85,7 @@ export function addElmtListener(globalVars: GlobalVars) {
     globalVars.elmtContainer.buttonTextureBump.addEventListener("click", () => {
         globalVars.tree.ref.setTexture(TEXTURE.BUMP);
     });
-    globalVars.elmtContainer.buttonTextureEnvironment.addEventListener("click", () => {
+    globalVars.elmtContainer.buttonTextureImage.addEventListener("click", () => {
         globalVars.tree.ref.setTexture(TEXTURE.IMAGE);
     });
     globalVars.elmtContainer.buttonTextureReflective.addEventListener("click", () => {
@@ -93,7 +93,19 @@ export function addElmtListener(globalVars: GlobalVars) {
     });
     globalVars.elmtContainer.buttonTextureNone.addEventListener("click", () => {
       globalVars.tree.ref.setTexture(TEXTURE.NONE);
-  });
+    });
+  globalVars.elmtContainer.swapWithNextFrame.onclick = () => {
+    globalVars.animator.swapWithNextFrame();
+  }
+  globalVars.elmtContainer.setAnimation.onchange = (ev) => {
+    const file = globalVars.elmtContainer.setAnimation.files?.[0];
+    if (!file) {
+      return;
+    }
+    globalVars.animator.loadAnimation(file);
+    globalVars.elmtContainer.setAnimation.value = "";
+    globalVars.elmtContainer.setAnimation.files = null;
+  }
   
     // TRANSLATION
     globalVars.elmtContainer.buttonTranslateLeft.addEventListener(

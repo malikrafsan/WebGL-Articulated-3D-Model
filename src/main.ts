@@ -51,7 +51,7 @@ const main = async () => {
 
   const selectedTree = t2;
 
-  const animator = new Animator(CUBES_ANIM);
+  const animator = new Animator(CUBES_ANIM, elmtContainer);
   animator.setModel(articulatedModel);
 
   const globalVars = new GlobalVars({

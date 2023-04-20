@@ -1,21 +1,37 @@
 import { IAnimation, IArticulatedModel, IFrame } from "../types";
 import { FileManager } from "../utils";
 import { ArticulatedModel } from "./ArticulatedModel";
+import { ElmtContainer } from "./ElmtContainer";
+import { GlobalVars } from "./GlobalVars";
 
 export class Animator {
   public static readonly TIME_INTERVAL = 1000;
-  private readonly _animation: IAnimation;
+  private _animation: IAnimation;
   private _idxCurAnimation: number = 0;
   private _interval: NodeJS.Timer;
   private _callback: (idx: number) => void = () => {};
   private _model: ArticulatedModel | null = null;
+  private _elmtContainer: ElmtContainer;
 
-  constructor(animation: IAnimation) {
+  constructor(animation: IAnimation, elmtContainer: ElmtContainer) {
     this._animation = animation;
+    this._elmtContainer = elmtContainer;
   }
 
   public setModel(model: ArticulatedModel) {
     this._model = model;
+  }
+
+  public loadAnimation(file: File) {
+    // this._animation = animation;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this._animation = JSON.parse(e.target?.result as string);
+      console.log("this._animation", this._animation);
+      this.idxCurAnimation = 0;
+      this.apply();
+    };
+    reader.readAsText(file);
   }
 
   public start() {
@@ -33,7 +49,10 @@ export class Animator {
     }
 
     try {
-      this._model.setFrame(this._animation.frames[this.idxCurAnimation]);
+      this._model.setFrame(
+        this._animation.frames[this.idxCurAnimation],
+        this._elmtContainer
+      );
       this._callback(this.idxCurAnimation);
     } catch (e) {
       alert(e);
@@ -81,7 +100,7 @@ export class Animator {
   }
 
   public saveCurFrame() {
-    const curFrame = this._animation.frames[this.idxCurAnimation]
+    const curFrame = this._animation.frames[this.idxCurAnimation];
     const json = JSON.stringify(curFrame);
     FileManager.writeFile("frame.json", json);
   }
@@ -121,16 +140,6 @@ export class Animator {
 
       this._animation.frames = [...allbefore, data, ...allafter];
       this.idxCurAnimation = this.idxCurAnimation + 1;
-
-      // const before = this._animation.frames.slice(0, this.idxCurAnimation);
-      // const after = this._animation.frames.slice(this.idxCurAnimation);
-      // this._animation.frames = [...before, data, ...after];
-
-      // this._animation.frames[this.idxCurAnimation] = data;
-
-
-      // this.idxCurAnimation = this.idxCurAnimation + 1;
-      // this._animation.frames.splice(this.idxCurAnimation, 0, data);
       this.apply();
     };
     reader.readAsText(file);
@@ -145,5 +154,15 @@ export class Animator {
   public saveAnimation() {
     const json = JSON.stringify(this._animation);
     FileManager.writeFile("animation.json", json);
+  }
+
+  public swapWithNextFrame() {
+    const nextIdx = (this.idxCurAnimation + 1) % this._animation.frames.length;
+
+    const tmp = this._animation.frames[this.idxCurAnimation];
+    this._animation.frames[this.idxCurAnimation] =
+      this._animation.frames[nextIdx];
+    this._animation.frames[nextIdx] = tmp;
+    this.apply();
   }
 }
