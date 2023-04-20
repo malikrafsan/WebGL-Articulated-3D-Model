@@ -108,6 +108,13 @@ export class ArticulatedModel {
     return this._texture;
   }
 
+  public setTexture(texture: TEXTURE_VALUES) {
+    this._texture = texture;
+    for(let i=0; i<this.children.length; i++){
+        this.children[i].setTexture(texture);
+    }
+  }
+
   public draw(props: {
     pMat: Matrix4;
     vMat: Matrix4;

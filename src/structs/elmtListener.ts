@@ -1,7 +1,7 @@
 import { ElmtContainer } from "./ElmtContainer";
 import { ContextGL } from "../webgl";
 import { Animator } from "../structs/Animator";
-import { PROJECTION } from "../config";
+import { PROJECTION, TEXTURE } from "../config";
 import { SaveLoader } from "../utils/SaveLoader";
 import { ArticulatedModel } from ".";
 import { GlobalVars } from "./GlobalVars";
@@ -60,6 +60,17 @@ export function addElmtListener(globalVars: GlobalVars) {
     
     // CHANGE OBJECT
     globalVars.elmtContainer.selectModel.addEventListener("change", () => {});
+
+    // CHANGE TEXTURE
+    globalVars.elmtContainer.buttonTextureBump.addEventListener("click", () => {
+        globalVars.tree.ref.setTexture(TEXTURE.BUMP);
+    });
+    globalVars.elmtContainer.buttonTextureEnvironment.addEventListener("click", () => {
+        globalVars.tree.ref.setTexture(TEXTURE.IMAGE);
+    });
+    globalVars.elmtContainer.buttonTextureReflective.addEventListener("click", () => {
+        globalVars.tree.ref.setTexture(TEXTURE.REFLECTION);
+    });
   
     // TRANSLATION
     globalVars.elmtContainer.buttonTranslateLeft.addEventListener(
