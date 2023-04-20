@@ -31,7 +31,7 @@ export const DOG: IArticulatedModel = {
     },
     transform: {
       translation: [0, 0, 0],
-      rotation: [10, -80, 0],
+      rotation: [10, -60, 0],
       scale: [1, 1, 1],
     },
     children: [
