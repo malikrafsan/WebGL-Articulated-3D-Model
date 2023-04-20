@@ -12,6 +12,7 @@ import {
   TextureGL,
   ITransform,
   IFrame,
+  CONFIG_RENDERER,
 } from "..";
 
 export class ArticulatedModel {
@@ -380,8 +381,12 @@ export class ArticulatedModel {
 
     gl.uniform3fv(
       this._locationGL.reverseLightDirection,
-      new Vector3(0.2, 0.4, 1).normalize().toArray()
+      CONFIG_RENDERER.REVERSE_LIGHT_DIRECTION,
     );
+    gl.uniform3fv(
+      this._locationGL.ambientLight,
+      CONFIG_RENDERER.AMBIENT_LIGHT,
+    )
 
     const viewModelMat = Matrix4.multiply(props.viewMat, props.modelMat);
     const normalMat = viewModelMat.clone().inverse().transpose();
@@ -397,7 +402,7 @@ export class ArticulatedModel {
       props.camera.position.toArray()
     );
 
-    gl.uniform1i(this._locationGL.shadingOn, props.isShadingOn ? 1 : 0);
+    gl.uniform1i(this._locationGL.isShadingOn, props.isShadingOn ? 1 : 0);
 
     // console.log("this.textureMode", this.textureMode);
     // console.log(TextureGL.textureNumber(this.textureMode))

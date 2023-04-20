@@ -1,78 +1,59 @@
 precision mediump float;
 
-uniform vec3 u_reverseLightDirection;
+uniform sampler2D u_fTextureImg;
+uniform samplerCube u_fTextureReflective;
+uniform sampler2D u_fTextureBump;
 
-// Shading parameters.
-uniform bool u_shadingOn;
+uniform vec3 u_fAmbientLight;
+uniform vec3 u_fWorldCamPos;
+uniform vec3 u_fReverseLightDir;
+uniform int u_fTextureMode;
+uniform bool u_fIsShadingOn;
 
-// Texture parameters.
-uniform int u_textureMode;
-varying vec2 v_textureCoord;
-
-// The position of the camera
-uniform vec3 u_worldCameraPosition;
-
-// The position of object.
-varying vec3 v_modelPosition;
-varying vec3 v_viewModelPosition;
-
-// The normal of object.
-varying vec3 v_worldNormal;
-
-// Passed in from the vertex shader.
-varying vec4 v_color;
-
-// The texture.
-uniform sampler2D u_texture_image;
-uniform samplerCube u_texture_environment;
-uniform sampler2D u_texture_bump;
-
-// All variables for Bump Mapping
-varying mat3 v_tbn;
+varying vec4 v_fCol;
+varying vec3 v_fModelPos;
+varying vec3 v_fViewModelPos;
+varying vec3 v_fWorldNorm;
+varying vec2 v_fTextureCoord;
+varying mat3 v_fBumpMat;
 
 void main() {
-   // Normalize the normal.
-   vec3 worldNormal = normalize(v_worldNormal);
-
-   // Lighting Effect.
-   vec3 ambientLight = vec3(0.3, 0.3, 0.3);
-   float directionalLight = dot(worldNormal, u_reverseLightDirection);
-   vec3 light = ambientLight + directionalLight;
+   vec3 worldNormal = normalize(v_fWorldNorm);
 
    // Default color is from buffer.
-   gl_FragColor = v_color;
+   // gl_FragColor = v_fCol;
 
    // Set the color to the texture.
-   if(u_textureMode == 0) {
-      gl_FragColor = texture2D(u_texture_image, v_textureCoord);
-   } else if(u_textureMode == 1) {
+   if(u_fTextureMode == 0) {
+      gl_FragColor = texture2D(u_fTextureImg, v_fTextureCoord);
+   } else if(u_fTextureMode == 1) {
       // Reflection direction.
-      vec3 eyeToSurfaceDir = normalize(v_modelPosition - u_worldCameraPosition);
+      vec3 eyeToSurfaceDir = normalize(v_fModelPos - u_fWorldCamPos);
       vec3 reflectionDir = reflect(eyeToSurfaceDir, worldNormal);
 
-      gl_FragColor = textureCube(u_texture_environment, reflectionDir);
-   } else if(u_textureMode == 2) {
+      gl_FragColor = textureCube(u_fTextureReflective, reflectionDir);
+   } else if(u_fTextureMode == 2) {
       // Fragment position and lighting position.
-      vec3 fragPos = v_tbn * v_viewModelPosition;
-      vec3 lightPos = v_tbn * u_reverseLightDirection;
+      vec3 fragPos = v_fBumpMat * v_fViewModelPos;
+      vec3 lightPos = v_fBumpMat * u_fReverseLightDir;
 
       // Lighting direction and ambient.
       vec3 lightDir = normalize(lightPos - fragPos);
-      vec3 albedo = texture2D(u_texture_bump, v_textureCoord).rgb;
+      vec3 albedo = texture2D(u_fTextureBump, v_fTextureCoord).rgb;
       vec3 ambient = 0.3 * albedo;
       // Lighting diffuse.
-      vec3 norm = normalize(texture2D(u_texture_bump, v_textureCoord).rgb * 2.0 - 1.0);
+      vec3 norm = normalize(texture2D(u_fTextureBump, v_fTextureCoord).rgb * 2.0 - 1.0);
       float diffuse = max(dot(lightDir, norm), 0.0);
 
       gl_FragColor = vec4(diffuse * albedo + ambient, 1.0);
-   } else if (u_textureMode == -1) {
-      gl_FragColor = v_color;
+   } else if (u_fTextureMode == -1) {
+      gl_FragColor = v_fCol;
    }
 
-   // gl_FragColor = v_color;
-   // Set the shading.
-   if(u_shadingOn) {
-      gl_FragColor.rgb *= light;
+   if(u_fIsShadingOn) {
+     float dirLight = dot(worldNormal, u_fReverseLightDir);
+     vec3 light = u_fAmbientLight + dirLight;
+     gl_FragColor.rgb *= light;
    }
 
 }

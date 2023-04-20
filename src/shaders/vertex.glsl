@@ -1,59 +1,53 @@
-attribute vec4 a_position;
-attribute vec4 a_color;
-attribute vec3 a_normal;
-attribute vec3 a_tangent;
-attribute vec3 a_bitangent;
+attribute vec4 a_vPos;
+attribute vec4 a_vCol;
+attribute vec3 a_vNorm;
+attribute vec3 a_vTangent;
+attribute vec3 a_vBitangent;
+attribute vec2 a_vTextureCoord;
 
-attribute vec2 a_textureCoord;
+uniform mat4 u_vProjMat;
+uniform mat4 u_vViewMat;
+uniform mat4 u_vModelMat;
+uniform mat4 u_vNormalMatrix;
 
-uniform mat4 u_projectionMatrix;
-uniform mat4 u_viewMatrix;
-uniform mat4 u_modelMatrix;
-uniform mat4 u_normalMatrix;
+varying mat3 v_fBumpMat;
+varying vec4 v_fCol;
+varying vec3 v_fModelPos;
+varying vec3 v_fViewModelPos;
+varying vec3 v_fWorldNorm;
+varying vec2 v_fTextureCoord;
 
-varying vec4 v_color;
+mat3 transpose(in mat3 v_in_Mat) {
+  vec3 row0 = v_in_Mat[0];
+  vec3 row1 = v_in_Mat[1];
+  vec3 row2 = v_in_Mat[2];
 
-varying vec3 v_modelPosition;
-varying vec3 v_viewModelPosition;
-varying vec3 v_worldNormal;
-varying vec2 v_textureCoord;
-
-// All variables for Bump Mapping
-varying mat3 v_tbn;
-
-mat3 transpose(in mat3 inMatrix) {
-  vec3 i0 = inMatrix[0];
-  vec3 i1 = inMatrix[1];
-  vec3 i2 = inMatrix[2];
-
-  mat3 outMatrix = mat3(vec3(i0.x, i1.x, i2.x), vec3(i0.y, i1.y, i2.y), vec3(i0.z, i1.z, i2.z));
-
-  return outMatrix;
+  mat3 v_out_Mat = mat3(
+    vec3(row0.x, row1.x, row2.x), 
+    vec3(row0.y, row1.y, row2.y), 
+    vec3(row0.z, row1.z, row2.z));
+  return v_out_Mat;
 }
 
 void main() {
-  // View model matrix.
-  mat4 viewModelMatrix = u_viewMatrix * u_modelMatrix;
+  mat4 viewModelMat = u_vViewMat * u_vModelMat;
+  vec3 normalizedTangentVector = normalize(
+    mat3(u_vNormalMatrix) * a_vTangent);
+  vec3 normalizedBitangentVector = normalize(
+    mat3(u_vNormalMatrix) * a_vBitangent);
+  vec3 normalizedNormalVector = normalize(
+    mat3(u_vNormalMatrix) * a_vNorm);
 
-  // Multiply the position by the matrix.
-  gl_Position = u_projectionMatrix * viewModelMatrix * a_position;
+  gl_Position = u_vProjMat * viewModelMat * a_vPos;
 
-  // send the view position to the fragment shader
-  v_modelPosition = vec3(u_modelMatrix * a_position);
-  v_viewModelPosition = vec3(viewModelMatrix * a_position);
-
-  // orient the normals and pass to the fragment shader
-  v_worldNormal = mat3(u_modelMatrix) * a_normal;
-
-  // Pass the color to the fragment shader.
-  v_color = a_color;
-
-  // Pass the texcoord to the fragment shader.
-  v_textureCoord = a_textureCoord;
-
-  // Bump mapping variables. 
-  vec3 t = normalize(mat3(u_normalMatrix) * a_tangent);
-  vec3 b = normalize(mat3(u_normalMatrix) * a_bitangent);
-  vec3 n = normalize(mat3(u_normalMatrix) * a_normal);
-  v_tbn = transpose(mat3(t, b, n));
+  // pass to fragment shader
+  v_fModelPos = vec3(u_vModelMat * a_vPos);
+  v_fViewModelPos = vec3(viewModelMat * a_vPos);
+  v_fWorldNorm = mat3(u_vModelMat) * a_vNorm;
+  v_fCol = a_vCol;
+  v_fTextureCoord = a_vTextureCoord;
+  v_fBumpMat = transpose(mat3(
+    normalizedTangentVector, 
+    normalizedBitangentVector,
+    normalizedNormalVector));
 }
