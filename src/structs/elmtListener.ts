@@ -7,6 +7,7 @@ import { ArticulatedModel } from ".";
 import { GlobalVars } from "./GlobalVars";
 import { TreeUtils } from "../utils/TreeUtils";
 import { ExtendedMath } from "../utils";
+import { CUBES, MINECRAFT_PEOPLE, MINECRAFT_PEOPLE_ANIM } from "../models";
 
 export function addElmtListener(globalVars: GlobalVars) {
     // const animator = globalVars.animator;
@@ -59,7 +60,26 @@ export function addElmtListener(globalVars: GlobalVars) {
     refreshModel(globalVars.elmtContainer, globalVars);
     
     // CHANGE OBJECT
-    globalVars.elmtContainer.selectModel.addEventListener("change", () => {});
+    globalVars.elmtContainer.selectModel.addEventListener("change", () => {
+      TreeUtils.resetTree(globalVars.elmtContainer);
+      let articulatedModel: ArticulatedModel;
+      if (globalVars.elmtContainer.selectModel.value == "MINECRAFT_PEOPLE") {
+        articulatedModel = new ArticulatedModel(globalVars.contextGL, MINECRAFT_PEOPLE);
+      } else if (globalVars.elmtContainer.selectModel.value == "model1") {
+        articulatedModel = new ArticulatedModel(globalVars.contextGL, CUBES);
+      } else {
+        articulatedModel = new ArticulatedModel(globalVars.contextGL, CUBES);
+      }
+      globalVars.model = new ArticulatedModel(globalVars.contextGL, articulatedModel);
+      const tree = TreeUtils.mapperTree(globalVars.model);
+      globalVars.tree = tree;
+      TreeUtils.mapTreeToComponentTree(globalVars.elmtContainer, tree, globalVars);
+      refreshModel(
+        globalVars.elmtContainer,
+        globalVars
+      );
+      globalVars.elmtContainer.activeComponent.innerHTML = tree.name;
+    });
 
     // CHANGE TEXTURE
     globalVars.elmtContainer.buttonTextureBump.addEventListener("click", () => {
@@ -176,7 +196,8 @@ export function addElmtListener(globalVars: GlobalVars) {
         globalVars.renderer.setShading(globalVars.elmtContainer.shaderOn.checked);
     });
     // RESET
-    globalVars.elmtContainer.buttonReset.addEventListener("click", () => {});
+    globalVars.elmtContainer.buttonReset.addEventListener("click", () => {
+    });
   
     // SAVE & LOAD
     globalVars.elmtContainer.buttonSave.addEventListener("click", () => {
