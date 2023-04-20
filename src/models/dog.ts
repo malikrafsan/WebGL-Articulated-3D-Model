@@ -1,0 +1,373 @@
+import {
+    COLORS,
+    Vertex,
+    Vector3,
+    IArticulatedModel,
+    TEXTURE,
+    IModelAndAnimation,
+} from "..";
+
+export const DOG = {
+    name: "Root",
+    node: {
+      vertices: [
+        new Vertex(new Vector3(0, 0, 0), COLORS.BISQUE),
+        new Vertex(new Vector3(0, 0, 0), COLORS.BISQUE),
+        new Vertex(new Vector3(0, 0, 0), COLORS.BISQUE),
+        new Vertex(new Vector3(0, 0, 0), COLORS.BISQUE),
+        new Vertex(new Vector3(0, 0, 0), COLORS.BISQUE),
+        new Vertex(new Vector3(0, 0, 0), COLORS.BISQUE),
+        new Vertex(new Vector3(0, 0, 0), COLORS.BISQUE),
+        new Vertex(new Vector3(0, 0, 0), COLORS.BISQUE),
+      ],
+      faces: [
+        [0, 1, 2, 3],
+        [5, 4, 7, 6],
+        [4, 0, 3, 7],
+        [1, 5, 6, 2],
+        [0, 4, 5, 1],
+        [2, 6, 7, 3],
+      ],
+    },
+    transform: {
+      translation: [0, 0, 0],
+      rotation: [10, -60, 0],
+      scale: [1, 1, 1],
+    },
+    children: [
+      {
+        name: "Head",
+        node: {
+          vertices: [
+            new Vertex(new Vector3(40, 40, 40), COLORS.BISQUE),
+            new Vertex(new Vector3(-40, 40, 40), COLORS.BISQUE),
+            new Vertex(new Vector3(-40, -40, 40), COLORS.BISQUE),
+            new Vertex(new Vector3(40, -40, 40), COLORS.BISQUE),
+            new Vertex(new Vector3(40, 40, -40), COLORS.BISQUE),
+            new Vertex(new Vector3(-40, 40, -40), COLORS.BISQUE),
+            new Vertex(new Vector3(-40, -40, -40), COLORS.BISQUE),
+            new Vertex(new Vector3(40, -40, -40), COLORS.BISQUE),
+          ],
+          faces: [
+            [0, 1, 2, 3],
+            [5, 4, 7, 6],
+            [4, 0, 3, 7],
+            [1, 5, 6, 2],
+            [0, 4, 5, 1],
+            [2, 6, 7, 3],
+          ],
+        },
+        transform: {
+          translation: [0, 90, 120],
+          rotation: [0, 0, 0],
+          scale: [1, 1, 1],
+        },
+        children: [
+            {
+              name: "Mouth",
+              node: {
+                vertices: [
+                  new Vertex(new Vector3(10, 10, 20), COLORS.AQUAMARINE),
+                  new Vertex(new Vector3(-10, 10, 20), COLORS.AQUAMARINE),
+                  new Vertex(new Vector3(-10, -10, 20), COLORS.AQUAMARINE),
+                  new Vertex(new Vector3(10, -10, 20), COLORS.AQUAMARINE),
+                  new Vertex(new Vector3(10, 10, -20), COLORS.AQUAMARINE),
+                  new Vertex(new Vector3(-10, 10, -20), COLORS.AQUAMARINE),
+                  new Vertex(new Vector3(-10, -10, -20), COLORS.AQUAMARINE),
+                  new Vertex(new Vector3(10, -10, -20), COLORS.AQUAMARINE),
+                ],
+                faces: [
+                  [0, 1, 2, 3],
+                  [5, 4, 7, 6],
+                  [4, 0, 3, 7],
+                  [1, 5, 6, 2],
+                  [0, 4, 5, 1],
+                  [2, 6, 7, 3],
+                ],
+              },
+              transform: {
+                translation: [0, -10, 60],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1], // TODO: USE CONFIG
+              },
+              children: [],
+              texture: TEXTURE.NONE,
+            },
+            {
+                name: "Ears(left)",
+                node: {
+                  vertices: [
+                    new Vertex(new Vector3(12, 20, 5), COLORS.BLACK),
+                    new Vertex(new Vector3(-12, 20, 5), COLORS.BLACK),
+                    new Vertex(new Vector3(-12, -20, 5), COLORS.BLACK),
+                    new Vertex(new Vector3(12, -20, 5), COLORS.BLACK),
+                    new Vertex(new Vector3(12, 20, -5), COLORS.BLACK),
+                    new Vertex(new Vector3(-12, 20, -5), COLORS.BLACK),
+                    new Vertex(new Vector3(-12, -20, -5), COLORS.BLACK),
+                    new Vertex(new Vector3(12, -20, -5), COLORS.BLACK),
+                  ],
+                  faces: [
+                    [0, 1, 2, 3],
+                    [5, 4, 7, 6],
+                    [4, 0, 3, 7],
+                    [1, 5, 6, 2],
+                    [0, 4, 5, 1],
+                    [2, 6, 7, 3],
+                  ],
+                },
+                transform: {
+                  translation: [50, 0, 0],
+                  rotation: [0, 0, 0],
+                  scale: [1, 1, 1], // TODO: USE CONFIG
+                },
+                children: [],
+                texture: TEXTURE.NONE,
+              },
+              {
+                name: "Ear(right)",
+                node: {
+                  vertices: [
+                    new Vertex(new Vector3(12, 20, 5), COLORS.BLACK),
+                    new Vertex(new Vector3(-12, 20, 5), COLORS.BLACK),
+                    new Vertex(new Vector3(-12, -20, 5), COLORS.BLACK),
+                    new Vertex(new Vector3(12, -20, 5), COLORS.BLACK),
+                    new Vertex(new Vector3(12, 20, -5), COLORS.BLACK),
+                    new Vertex(new Vector3(-12, 20, -5), COLORS.BLACK),
+                    new Vertex(new Vector3(-12, -20, -5), COLORS.BLACK),
+                    new Vertex(new Vector3(12, -20, -5), COLORS.BLACK),
+                  ],
+                  faces: [
+                    [0, 1, 2, 3],
+                    [5, 4, 7, 6],
+                    [4, 0, 3, 7],
+                    [1, 5, 6, 2],
+                    [0, 4, 5, 1],
+                    [2, 6, 7, 3],
+                  ],
+                },
+                transform: {
+                  translation: [-50, 0, 0],
+                  rotation: [0, 0, 0],
+                  scale: [1, 1, 1],
+                },
+                children: [],
+                texture: TEXTURE.NONE,
+              },
+        ],
+        texture: TEXTURE.NONE,
+      },
+      {
+        name: "Body",
+        node: {
+          vertices: [
+            new Vertex(new Vector3(50, 50, 100), COLORS.BROWN),
+            new Vertex(new Vector3(-50, 50, 100), COLORS.BROWN),
+            new Vertex(new Vector3(-50, -50, 100), COLORS.BROWN),
+            new Vertex(new Vector3(50, -50, 100), COLORS.BROWN),
+            new Vertex(new Vector3(50, 50, -100), COLORS.BROWN),
+            new Vertex(new Vector3(-50, 50, -100), COLORS.BROWN),
+            new Vertex(new Vector3(-50, -50, -100), COLORS.BROWN),
+            new Vertex(new Vector3(50, -50, -100), COLORS.BROWN),
+          ],
+          faces: [
+            [0, 1, 2, 3],
+            [5, 4, 7, 6],
+            [4, 0, 3, 7],
+            [1, 5, 6, 2],
+            [0, 4, 5, 1],
+            [2, 6, 7, 3],
+          ],
+        },
+        transform: {
+          translation: [0, 0, 0],
+          rotation: [0, 0, 0],
+          scale: [1, 1, 1],
+        },
+        children: [
+            {
+                name: "Front_Leg(left)",
+                node: {
+                  vertices: [
+                    new Vertex(new Vector3(20, 80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, 80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, -80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, -80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, 80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, 80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, -80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, -80, -20), COLORS.DARK_GREEN),
+                  ],
+                  faces: [
+                    [0, 1, 2, 3],
+                    [5, 4, 7, 6],
+                    [4, 0, 3, 7],
+                    [1, 5, 6, 2],
+                    [0, 4, 5, 1],
+                    [2, 6, 7, 3],
+                  ],
+                },
+                transform: {
+                  translation: [70, -70, 70],
+                  rotation: [0, 0, 0],
+                  scale: [1, 1, 1], // TODO: USE CONFIG
+                },
+                children: [],
+                texture: TEXTURE.NONE,
+            },
+            {
+                name: "Front_Leg(right)",
+                node: {
+                  vertices: [
+                    new Vertex(new Vector3(20, 80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, 80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, -80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, -80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, 80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, 80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, -80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, -80, -20), COLORS.DARK_GREEN),
+                  ],
+                  faces: [
+                    [0, 1, 2, 3],
+                    [5, 4, 7, 6],
+                    [4, 0, 3, 7],
+                    [1, 5, 6, 2],
+                    [0, 4, 5, 1],
+                    [2, 6, 7, 3],
+                  ],
+                },
+                transform: {
+                  translation: [-70, -70, 70],
+                  rotation: [0, 0, 0],
+                  scale: [1, 1, 1],
+                },
+                children: [],
+                texture: TEXTURE.NONE,
+            },
+            {
+                name: "Back_Leg(left)",
+                node: {
+                  vertices: [
+                    new Vertex(new Vector3(20, 80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, 80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, -80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, -80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, 80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, 80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, -80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, -80, -20), COLORS.DARK_GREEN),
+                  ],
+                  faces: [
+                    [0, 1, 2, 3],
+                    [5, 4, 7, 6],
+                    [4, 0, 3, 7],
+                    [1, 5, 6, 2],
+                    [0, 4, 5, 1],
+                    [2, 6, 7, 3],
+                  ],
+                },
+                transform: {
+                  translation: [70, -70, -70],
+                  rotation: [0, 0, 0],
+                  scale: [1, 1, 1],
+                },
+                children: [],
+                texture: TEXTURE.NONE,
+            },
+            {
+                name: "Back_Leg(right)",
+                node: {
+                  vertices: [
+                    new Vertex(new Vector3(20, 80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, 80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, -80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, -80, 20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, 80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, 80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(-20, -80, -20), COLORS.DARK_GREEN),
+                    new Vertex(new Vector3(20, -80, -20), COLORS.DARK_GREEN),
+                  ],
+                  faces: [
+                    [0, 1, 2, 3],
+                    [5, 4, 7, 6],
+                    [4, 0, 3, 7],
+                    [1, 5, 6, 2],
+                    [0, 4, 5, 1],
+                    [2, 6, 7, 3],
+                  ],
+                },
+                transform: {
+                  translation: [-70, -70, -70],
+                  rotation: [0, 0, 0],
+                  scale: [1, 1, 1],
+                },
+                children: [],
+                texture: TEXTURE.NONE,
+            },
+            {
+                name: "Tail(1)",
+                node: {
+                  vertices: [
+                    new Vertex(new Vector3(10, 10, 40), COLORS.GRAY),
+                    new Vertex(new Vector3(-10, 10, 40), COLORS.GRAY),
+                    new Vertex(new Vector3(-10, -10, 40), COLORS.GRAY),
+                    new Vertex(new Vector3(10, -10, 40), COLORS.GRAY),
+                    new Vertex(new Vector3(10, 10, -40), COLORS.GRAY),
+                    new Vertex(new Vector3(-10, 10, -40), COLORS.GRAY),
+                    new Vertex(new Vector3(-10, -10, -40), COLORS.GRAY),
+                    new Vertex(new Vector3(10, -10, -40), COLORS.GRAY),
+                  ],
+                  faces: [
+                    [0, 1, 2, 3],
+                    [5, 4, 7, 6],
+                    [4, 0, 3, 7],
+                    [1, 5, 6, 2],
+                    [0, 4, 5, 1],
+                    [2, 6, 7, 3],
+                  ],
+                },
+                transform: {
+                  translation: [0, 30, -140],
+                  rotation: [0, 0, 0],
+                  scale: [1, 1, 1],
+                },
+                children: [
+                    {
+                        name: "Tail(2)",
+                        node: {
+                          vertices: [
+                            new Vertex(new Vector3(10, 10, 30), COLORS.BLUE),
+                            new Vertex(new Vector3(-10, 10, 30), COLORS.BLUE),
+                            new Vertex(new Vector3(-10, -10, 30), COLORS.BLUE),
+                            new Vertex(new Vector3(10, -10, 30), COLORS.BLUE),
+                            new Vertex(new Vector3(10, 10, -30), COLORS.BLUE),
+                            new Vertex(new Vector3(-10, 10, -30), COLORS.BLUE),
+                            new Vertex(new Vector3(-10, -10, -30), COLORS.BLUE),
+                            new Vertex(new Vector3(10, -10, -30), COLORS.BLUE),
+                          ],
+                          faces: [
+                            [0, 1, 2, 3],
+                            [5, 4, 7, 6],
+                            [4, 0, 3, 7],
+                            [1, 5, 6, 2],
+                            [0, 4, 5, 1],
+                            [2, 6, 7, 3],
+                          ],
+                        },
+                        transform: {
+                          translation: [0, 15, -60],
+                          rotation: [30, 0, 0],
+                          scale: [1, 1, 1],
+                        },
+                        children: [],
+                        texture: TEXTURE.NONE,
+                    },
+                ],
+                texture: TEXTURE.NONE,
+            },
+        ],
+        texture: TEXTURE.NONE, // Body
+      },
+    ],
+    texture: TEXTURE.NONE, // Root
+};
